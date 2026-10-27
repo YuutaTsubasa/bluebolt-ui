@@ -1,0 +1,133 @@
+/*
+ * bluebolt-ui design tokens.
+ * Four colours: blue (primary), white (paper), yellow (signal), black (ink).
+ * Theme: follows prefers-color-scheme; force with <html data-theme="light|dark">.
+ * Motion: follows prefers-reduced-motion; force with <html data-motion="full|reduce">.
+ */
+:root {
+  color-scheme: light;
+
+  /* ---- palette: light ---- */
+  --bb-paper: #f4f6fa;
+  --bb-surface: #ffffff;
+  --bb-ink: #0b0f1a;
+  --bb-ink-2: #3a4252;
+  --bb-ink-3: #5f6878;
+  --bb-ink-4: #a3abb9;
+  --bb-line: rgb(11 15 26 / 0.14);
+  --bb-line-2: rgb(11 15 26 / 0.28);
+
+  --bb-blue: #1f5af0;
+  --bb-blue-2: #4a7dff;
+  --bb-blue-soft: #cfdcff;
+  --bb-blue-deep: #0a2a80;
+  --bb-blue-text: #1f5af0; /* blue used as text on paper/surface (AA) */
+  --bb-yellow: #ffd21f;
+  --bb-yellow-soft: #fff1a8;
+  --bb-yellow-deep: #7a5c00;
+
+  /* text that sits on a filled colour */
+  --bb-on-blue: #ffffff;
+  --bb-on-yellow: #0b0f1a;
+  --bb-on-ink: #eef2fa;
+  --bb-on-ink-2: #9aa6bd;
+
+  /* the inverted "ink" panel stays dark in both themes */
+  --bb-panel-ink: #0b0f1a;
+
+  /* ---- type ---- */
+  --bb-font-zh: "Noto Sans TC Variable", "Microsoft JhengHei UI", "PingFang TC", system-ui, sans-serif;
+  --bb-font-display: "Anton", "Impact", var(--bb-font-zh);
+  --bb-font-cond: "Saira Condensed", "Arial Narrow", var(--bb-font-zh);
+  --bb-font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --bb-text-xs: 0.75rem;
+  --bb-text-sm: 0.875rem;
+  --bb-text-md: 1rem;
+  --bb-text-lg: 1.25rem;
+  --bb-text-xl: 1.75rem;
+  --bb-text-2xl: 2.5rem;
+  --bb-text-hero: clamp(2.5rem, 6vw, 5rem);
+
+  /* ---- space & shape ---- */
+  --bb-space-1: 4px;
+  --bb-space-2: 8px;
+  --bb-space-3: 12px;
+  --bb-space-4: 16px;
+  --bb-space-5: 24px;
+  --bb-space-6: 32px;
+  --bb-space-7: 48px;
+  --bb-radius: 2px;
+  --bb-skew: -12deg;
+  --bb-cut: 14px; /* corner cut on plates */
+  --bb-shadow: 6px 6px 0 var(--bb-ink);
+
+  /* ---- motion ---- */
+  --bb-ease: cubic-bezier(0.2, 0.9, 0.2, 1); /* fast out, soft settle */
+  --bb-ease-in: cubic-bezier(0.6, 0, 0.8, 0.2);
+  --bb-ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+  --bb-dur-1: 120ms;
+  --bb-dur-2: 200ms;
+  --bb-dur-3: 280ms;
+  --bb-dur-4: 550ms;
+  --bb-dur-5: 900ms;
+  --bb-stagger: 28ms;
+  /* 1 = full motion, 0 = reduced: multiply movement distances by this */
+  --bb-motion: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bb-paper: #0a0e17;
+    --bb-surface: #131a28;
+    --bb-ink: #eef2fa;
+    --bb-ink-2: #b4bdcc;
+    --bb-ink-3: #8a94a7;
+    --bb-ink-4: #4c566a;
+    --bb-line: rgb(238 242 250 / 0.16);
+    --bb-line-2: rgb(238 242 250 / 0.3);
+    --bb-blue: #2d63f0;
+    --bb-blue-2: #6f98ff;
+    --bb-blue-soft: #1c2f66;
+    --bb-blue-deep: #a9c2ff;
+  --bb-blue-text: #6f98ff;
+    --bb-yellow: #ffd84a;
+    --bb-yellow-soft: #4a3d05;
+    --bb-yellow-deep: #ffe58a;
+    --bb-panel-ink: #05070c;
+    --bb-shadow: 6px 6px 0 #000;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bb-paper: #0a0e17;
+  --bb-surface: #131a28;
+  --bb-ink: #eef2fa;
+  --bb-ink-2: #b4bdcc;
+  --bb-ink-3: #8a94a7;
+  --bb-ink-4: #4c566a;
+  --bb-line: rgb(238 242 250 / 0.16);
+  --bb-line-2: rgb(238 242 250 / 0.3);
+  --bb-blue: #2d63f0;
+  --bb-blue-2: #6f98ff;
+  --bb-blue-soft: #1c2f66;
+  --bb-blue-deep: #a9c2ff;
+  --bb-blue-text: #6f98ff;
+  --bb-yellow: #ffd84a;
+  --bb-yellow-soft: #4a3d05;
+  --bb-yellow-deep: #ffe58a;
+  --bb-panel-ink: #05070c;
+  --bb-shadow: 6px 6px 0 #000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) {
+    --bb-motion: 0;
+  }
+}
+
+:root[data-motion="reduce"] {
+  --bb-motion: 0;
+}

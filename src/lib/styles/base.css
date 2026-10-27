@@ -1,0 +1,229 @@
+/*
+ * bluebolt-ui base: page defaults, shared utility classes and the keyframes the
+ * motion actions rely on. Import after tokens.css (styles.css does both).
+ */
+:root {
+  /* derived motion timings: collapse to a short fade when --bb-motion is 0 */
+  --bb-t-enter: calc(var(--bb-dur-1) + (var(--bb-dur-4) - var(--bb-dur-1)) * var(--bb-motion));
+  --bb-t-wipe: calc(var(--bb-dur-1) + (var(--bb-dur-3) - var(--bb-dur-1)) * var(--bb-motion));
+  --bb-t-stagger: calc(var(--bb-stagger) * var(--bb-motion));
+}
+
+html {
+  background: var(--bb-paper);
+  color: var(--bb-ink);
+  font-family: var(--bb-font-zh);
+  font-feature-settings: "palt" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background: var(--bb-paper);
+  color: var(--bb-ink);
+}
+
+::selection {
+  background: var(--bb-yellow);
+  color: var(--bb-on-yellow);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--bb-ink);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--bb-yellow);
+}
+
+* {
+  scrollbar-color: var(--bb-line-2) transparent;
+}
+
+/* ---------- type helpers ---------- */
+.bb-label {
+  font-family: var(--bb-font-cond);
+  font-weight: 600;
+  font-size: var(--bb-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bb-ink-3);
+}
+
+.bb-num {
+  font-family: var(--bb-font-display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  line-height: 0.9;
+}
+
+.bb-mono {
+  font-family: var(--bb-font-mono);
+  font-size: 0.85em;
+}
+
+.bb-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- surfaces & decoration ---------- */
+.bb-hazard {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--bb-yellow) 0 10px,
+    var(--bb-panel-ink) 10px 20px
+  );
+}
+
+/* L-shaped corner marks; set --bb-bracket-color / --bb-bracket-size to tune */
+.bb-brackets {
+  --_c: var(--bb-bracket-color, var(--bb-ink));
+  --_s: var(--bb-bracket-size, 12px);
+  background:
+    linear-gradient(var(--_c), var(--_c)) top left / var(--_s) 2px,
+    linear-gradient(var(--_c), var(--_c)) top left / 2px var(--_s),
+    linear-gradient(var(--_c), var(--_c)) top right / var(--_s) 2px,
+    linear-gradient(var(--_c), var(--_c)) top right / 2px var(--_s),
+    linear-gradient(var(--_c), var(--_c)) bottom left / var(--_s) 2px,
+    linear-gradient(var(--_c), var(--_c)) bottom left / 2px var(--_s),
+    linear-gradient(var(--_c), var(--_c)) bottom right / var(--_s) 2px,
+    linear-gradient(var(--_c), var(--_c)) bottom right / 2px var(--_s);
+  background-repeat: no-repeat;
+}
+
+/* printed-paper grain on top of an element (pointer-events pass through) */
+.bb-grain {
+  position: relative;
+  isolation: isolate;
+}
+.bb-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--bb-grain-opacity, 0.22);
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:root[data-theme="dark"] .bb-grain::after {
+  mix-blend-mode: screen;
+  filter: invert(1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .bb-grain::after {
+    mix-blend-mode: screen;
+    filter: invert(1);
+  }
+}
+
+/* ---------- motion: kinetic text (use:kinetic) ---------- */
+.bb-kin-ch {
+  display: inline-block;
+  white-space: pre;
+  animation: bb-kin var(--bb-t-enter) var(--bb-ease) both;
+  animation-delay: calc(var(--bb-delay, 0ms) + var(--i, 0) * var(--bb-t-stagger));
+}
+@keyframes bb-kin {
+  from {
+    opacity: 0;
+    transform: translateY(calc(70% * var(--bb-motion))) skewX(calc(var(--bb-skew) * var(--bb-motion)));
+    clip-path: inset(-30% -30% calc(100% * var(--bb-motion)) -30%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(-30% -30% -30% -30%);
+  }
+}
+
+/* ---------- motion: wipe-in plates (use:wipe) ---------- */
+/* hidden with opacity (not clip-path) before entering, so IntersectionObserver still sees it */
+.bb-wipe {
+  position: relative;
+}
+.bb-wipe:not(.is-in) {
+  opacity: 0;
+}
+.bb-wipe.is-in {
+  animation: bb-wipe var(--bb-t-wipe) var(--bb-ease) both;
+  animation-delay: var(--bb-delay, 0ms);
+}
+.bb-wipe.is-in::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: var(--bb-yellow);
+  z-index: 2;
+  pointer-events: none;
+  opacity: var(--bb-motion);
+  animation: bb-wipe-edge var(--bb-t-wipe) var(--bb-ease) both;
+  animation-delay: var(--bb-delay, 0ms);
+}
+@keyframes bb-wipe {
+  from {
+    /* full motion: the clip does the reveal; reduced: plain fade */
+    opacity: var(--bb-motion);
+    clip-path: inset(0 calc(100% * var(--bb-motion)) 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 -1px 0 0);
+  }
+}
+@keyframes bb-wipe-edge {
+  from { left: 0; opacity: 1; }
+  85% { left: calc(100% - 3px); opacity: 1; }
+  to { left: calc(100% - 3px); opacity: 0; }
+}
+
+/* ---------- motion: hover sheen (use:sheen or class) ---------- */
+.bb-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.bb-sheen::after {
+  content: "";
+  position: absolute;
+  inset: -20% auto -20% 0;
+  width: 40%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.55), transparent);
+  transform: translateX(-160%) skewX(var(--bb-skew));
+  opacity: 0;
+}
+.bb-sheen:hover::after,
+.bb-sheen.is-sheen::after {
+  opacity: var(--bb-motion);
+  animation: bb-sheen var(--bb-dur-4) var(--bb-ease) both;
+}
+@keyframes bb-sheen {
+  to { transform: translateX(320%) skewX(var(--bb-skew)); }
+}
+
+/* ---------- motion: press ripple (use:ripple) ---------- */
+.bb-ripple-dot {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: var(--bb-ripple-color, currentColor);
+  transform: translate(-50%, -50%) scale(0);
+  animation: bb-ripple var(--bb-dur-4) var(--bb-ease) forwards;
+}
+@keyframes bb-ripple {
+  from { opacity: 0.35; transform: translate(-50%, -50%) scale(0); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ---------- motion: generic pulse for live indicators ---------- */
+@keyframes bb-pulse {
+  0% { transform: scale(1); opacity: calc(0.7 * var(--bb-motion)); }
+  100% { transform: scale(2.6); opacity: 0; }
+}
