@@ -61,6 +61,24 @@ body {
   font-size: 0.85em;
 }
 
+/* huge slanted status word with a hard offset shadow (e.g. ON AIR) */
+.bb-shout {
+  display: inline-block;
+  font-family: var(--bb-font-display);
+  line-height: 0.85;
+  transform: skewX(-10deg);
+  text-shadow:
+    0.04em 0.04em 0 var(--bb-surface),
+    0.07em 0.07em 0 var(--bb-ink);
+}
+
+/* small handwritten accent */
+.bb-script {
+  font-family: var(--bb-font-script);
+  font-weight: 400;
+  color: var(--bb-blue-text);
+}
+
 .bb-sr-only {
   position: absolute;
   width: 1px;

@@ -8,7 +8,7 @@
   color-scheme: light;
 
   /* ---- palette: light ---- */
-  --bb-paper: #f4f6fa;
+  --bb-paper: #f3f6fd;
   --bb-surface: #ffffff;
   --bb-ink: #0b0f1a;
   --bb-ink-2: #3a4252;
@@ -17,11 +17,11 @@
   --bb-line: rgb(11 15 26 / 0.14);
   --bb-line-2: rgb(11 15 26 / 0.28);
 
-  --bb-blue: #1f5af0;
-  --bb-blue-2: #4a7dff;
-  --bb-blue-soft: #cfdcff;
-  --bb-blue-deep: #0a2a80;
-  --bb-blue-text: #1f5af0; /* blue used as text on paper/surface (AA) */
+  --bb-blue: #0040e0;
+  --bb-blue-2: #3a78ff;
+  --bb-blue-soft: #c4d6ff;
+  --bb-blue-deep: #002a99;
+  --bb-blue-text: #0040e0; /* blue used as text on paper/surface (AA) */
   --bb-yellow: #ffd21f;
   --bb-yellow-soft: #fff1a8;
   --bb-yellow-deep: #7a5c00;
@@ -32,6 +32,14 @@
   --bb-on-ink: #eef2fa;
   --bb-on-ink-2: #9aa6bd;
 
+  /* glass panels & HUD lines */
+  --bb-glass: rgb(255 255 255 / 0.62);
+  --bb-glass-strong: rgb(255 255 255 / 0.82);
+  --bb-glass-edge: rgb(255 255 255 / 0.9);
+  --bb-hud-line: rgb(11 15 26 / 0.22);
+  --bb-hud-dot: rgb(11 15 26 / 0.16);
+  --bb-strip: #0b0f1a; /* black header strips */
+  --bb-on-strip: #ffffff;
   /* the inverted "ink" panel stays dark in both themes */
   --bb-panel-ink: #0b0f1a;
 
@@ -40,6 +48,8 @@
   --bb-font-display: "Anton", "Impact", var(--bb-font-zh);
   --bb-font-cond: "Saira Condensed", "Arial Narrow", var(--bb-font-zh);
   --bb-font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --bb-font-serif: "Noto Serif TC", "PMingLiU", serif; /* vertical display kanji */
+  --bb-font-script: "Pinyon Script", cursive; /* small handwritten accents */
 
   --bb-text-xs: 0.75rem;
   --bb-text-sm: 0.875rem;
@@ -79,47 +89,59 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bb-paper: #0a0e17;
-    --bb-surface: #131a28;
+    --bb-paper: #060b1a;
+    --bb-surface: #0d1530;
     --bb-ink: #eef2fa;
     --bb-ink-2: #b4bdcc;
     --bb-ink-3: #8a94a7;
     --bb-ink-4: #4c566a;
     --bb-line: rgb(238 242 250 / 0.16);
     --bb-line-2: rgb(238 242 250 / 0.3);
-    --bb-blue: #2d63f0;
-    --bb-blue-2: #6f98ff;
-    --bb-blue-soft: #1c2f66;
+    --bb-blue: #0a4ff0;
+    --bb-blue-2: #4d86ff;
+    --bb-blue-soft: #0a2466;
     --bb-blue-deep: #a9c2ff;
-  --bb-blue-text: #6f98ff;
+  --bb-blue-text: #4d86ff;
     --bb-yellow: #ffd84a;
     --bb-yellow-soft: #4a3d05;
     --bb-yellow-deep: #ffe58a;
     --bb-panel-ink: #05070c;
     --bb-shadow: 6px 6px 0 #000;
+    --bb-glass: rgb(13 21 48 / 0.6);
+    --bb-glass-strong: rgb(13 21 48 / 0.82);
+    --bb-glass-edge: rgb(120 160 255 / 0.35);
+    --bb-hud-line: rgb(238 242 250 / 0.22);
+    --bb-hud-dot: rgb(238 242 250 / 0.14);
+    --bb-strip: #000000;
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bb-paper: #0a0e17;
-  --bb-surface: #131a28;
+  --bb-paper: #060b1a;
+  --bb-surface: #0d1530;
   --bb-ink: #eef2fa;
   --bb-ink-2: #b4bdcc;
   --bb-ink-3: #8a94a7;
   --bb-ink-4: #4c566a;
   --bb-line: rgb(238 242 250 / 0.16);
   --bb-line-2: rgb(238 242 250 / 0.3);
-  --bb-blue: #2d63f0;
-  --bb-blue-2: #6f98ff;
-  --bb-blue-soft: #1c2f66;
+  --bb-blue: #0a4ff0;
+  --bb-blue-2: #4d86ff;
+  --bb-blue-soft: #0a2466;
   --bb-blue-deep: #a9c2ff;
-  --bb-blue-text: #6f98ff;
+  --bb-blue-text: #4d86ff;
   --bb-yellow: #ffd84a;
   --bb-yellow-soft: #4a3d05;
   --bb-yellow-deep: #ffe58a;
   --bb-panel-ink: #05070c;
   --bb-shadow: 6px 6px 0 #000;
+  --bb-glass: rgb(13 21 48 / 0.6);
+  --bb-glass-strong: rgb(13 21 48 / 0.82);
+  --bb-glass-edge: rgb(120 160 255 / 0.35);
+  --bb-hud-line: rgb(238 242 250 / 0.22);
+  --bb-hud-dot: rgb(238 242 250 / 0.14);
+  --bb-strip: #000000;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -18,6 +18,18 @@ export { default as HazardStripe } from './components/HazardStripe.svelte';
 export { default as Ruler } from './components/Ruler.svelte';
 export { default as Barcode } from './components/Barcode.svelte';
 
+// HUD layout pieces
+export { default as HudBackdrop } from './components/HudBackdrop.svelte';
+export { default as StairMenu } from './components/StairMenu.svelte';
+export { default as RingDial } from './components/RingDial.svelte';
+export { default as Panel } from './components/Panel.svelte';
+export { default as ScreenTitle } from './components/ScreenTitle.svelte';
+export { default as DisplayWord } from './components/DisplayWord.svelte';
+export { default as VerticalText } from './components/VerticalText.svelte';
+export { default as DateCard } from './components/DateCard.svelte';
+export { default as Ticker } from './components/Ticker.svelte';
+export { default as LaneList } from './components/LaneList.svelte';
+
 // Motion & input
 export { wipe, sheen, ripple, inView, reducedMotion, setMotion, setTheme, splitChars } from './motion/index.js';
 export { onGamepadIntent } from './input/gamepad.js';
