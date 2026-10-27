@@ -17,11 +17,12 @@
   --bb-line: rgb(11 15 26 / 0.14);
   --bb-line-2: rgb(11 15 26 / 0.28);
 
-  --bb-blue: #0040e0;
-  --bb-blue-2: #3a78ff;
+  --bb-blue: #183dd6;
+  --bb-blue-shade: #1133b1; /* darker facet of the same blue */
+  --bb-blue-2: #4a72ff;
   --bb-blue-soft: #c4d6ff;
-  --bb-blue-deep: #002a99;
-  --bb-blue-text: #0040e0; /* blue used as text on paper/surface (AA) */
+  --bb-blue-deep: #1133b1;
+  --bb-blue-text: #183dd6; /* blue used as text on paper/surface (AA) */
   --bb-yellow: #ffd21f;
   --bb-yellow-soft: #fff1a8;
   --bb-yellow-deep: #7a5c00;
@@ -97,7 +98,7 @@
     --bb-ink-4: #4c566a;
     --bb-line: rgb(238 242 250 / 0.16);
     --bb-line-2: rgb(238 242 250 / 0.3);
-    --bb-blue: #0a4ff0;
+    --bb-blue: #183dd6;
     --bb-blue-2: #4d86ff;
     --bb-blue-soft: #0a2466;
     --bb-blue-deep: #a9c2ff;
@@ -126,7 +127,7 @@
   --bb-ink-4: #4c566a;
   --bb-line: rgb(238 242 250 / 0.16);
   --bb-line-2: rgb(238 242 250 / 0.3);
-  --bb-blue: #0a4ff0;
+  --bb-blue: #183dd6;
   --bb-blue-2: #4d86ff;
   --bb-blue-soft: #0a2466;
   --bb-blue-deep: #a9c2ff;

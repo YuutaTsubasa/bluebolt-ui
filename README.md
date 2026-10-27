@@ -86,8 +86,9 @@ setMotion('reduce');  // 'auto' | 'full' | 'reduce'，auto 跟系統「減少動
 | `--bb-paper` | `#f3f6fd` | `#060b1a` | 頁面底色 |
 | `--bb-surface` | `#ffffff` | `#0d1530` | 卡片、色板 |
 | `--bb-ink` / `-2` / `-3` | `#0b0f1a` … | `#eef2fa` … | 文字 |
-| `--bb-blue` | `#0040e0` | `#0a4ff0` | 主色（上面放白字，AA） |
-| `--bb-blue-text` | `#0040e0` | `#4d86ff` | 藍色文字（AA） |
+| `--bb-blue` | `#183dd6` | `#183dd6` | 主色（上面放白字，8:1） |
+| `--bb-blue-shade` | `#1133b1` | `#1133b1` | 同色系較深的斜切面（主要按鈕右側） |
+| `--bb-blue-text` | `#183dd6` | `#4d86ff` | 藍色文字（AA） |
 | `--bb-blue-soft` | `#c4d6ff` | `#0a2466` | 淡藍色板 |
 | `--bb-yellow` | `#ffd21f` | `#ffd84a` | 訊號色：焦點、LIVE、警示；上面一律放 `--bb-on-yellow`（黑） |
 | `--bb-panel-ink` | `#0b0f1a` | `#05070c` | 兩種主題都維持深色的面板 |
