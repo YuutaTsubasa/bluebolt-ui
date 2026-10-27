@@ -47,6 +47,7 @@
     --_bg: var(--bb-blue);
     --_fg: var(--bb-on-blue);
     --_shadow: var(--bb-panel-ink);
+    --_facet: var(--bb-blue-shade); /* diagonal darker facet on the right */
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -68,7 +69,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: var(--_bg);
+    background: linear-gradient(112deg, var(--_bg) 0 72%, var(--_facet, var(--_bg)) 72%);
     transform: skewX(var(--bb-skew));
     box-shadow: 0 0 0 0 var(--_shadow);
     transition:
@@ -119,10 +120,12 @@
   }
 
   .v-accent {
+    --_facet: var(--_bg);
     --_bg: var(--bb-yellow);
     --_fg: var(--bb-on-yellow);
   }
   .v-ink {
+    --_facet: var(--_bg);
     --_bg: var(--bb-panel-ink);
     --_fg: var(--bb-on-ink);
     --_shadow: var(--bb-blue);
@@ -132,6 +135,7 @@
     border: 1.5px solid var(--bb-line-2);
   }
   .v-ghost {
+    --_facet: var(--_bg);
     --_bg: transparent;
     --_fg: var(--bb-ink);
     --_shadow: var(--bb-blue);

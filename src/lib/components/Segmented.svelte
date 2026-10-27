@@ -10,7 +10,7 @@
   let { options, value = $bindable(options[0]?.value), label = '', size = 'md', onchange } = $props();
 
   /** @type {Record<string, HTMLButtonElement>} */
-  const btns = {};
+  const btns = $state({});
   let ind = $state({ x: 0, w: 0, ready: false });
 
   function measure() {

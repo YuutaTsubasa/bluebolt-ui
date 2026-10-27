@@ -16,7 +16,7 @@
   let { items, selected = $bindable(0), label = 'Menu', gamepad = true, onchoose, onback } = $props();
 
   /** @type {HTMLElement[]} */
-  const rows = [];
+  const rows = $state([]);
   /** @type {HTMLElement | undefined} */
   let root = $state();
 
