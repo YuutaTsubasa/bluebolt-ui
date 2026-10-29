@@ -1,6 +1,6 @@
 <!--
-  Settings / options screen: a skewed blue band on the left with a huge vertical
-  outlined title, a column of outlined nav buttons (active one turns white), and
+  Settings / options screen: a skewed blue band on the left (yellow edge, hazard
+  cap, bolt and tick marks) with a huge vertical outlined title, a column of outlined nav buttons (active one turns white), and
   a dark translucent content panel. Slots for the top-left and top-right bars.
 -->
 <script>
@@ -14,7 +14,7 @@
    * }}
    */
   let {
-    title = 'OPTION & SETTING',
+    title = 'SETTINGS',
     items,
     active = $bindable(items[0]?.id),
     fixed = false,
@@ -40,8 +40,11 @@
 
 <div class="bb-settings bb-on-dark" class:fixed>
   <div class="band" aria-hidden="true">
+    <span class="band-haz"></span>
+    <svg class="band-bolt" viewBox="0 0 20 30"><path d="M12 0 L2 17 H9 L6 30 L18 12 H11 Z" /></svg>
     <span class="band-t">{title}</span>
   </div>
+  <div class="band-edge" aria-hidden="true"></div>
   {#if topLeft}<div class="tl">{@render topLeft()}</div>{/if}
   {#if topRight}<div class="tr">{@render topRight()}</div>{/if}
 
@@ -113,6 +116,40 @@
       transform: translateY(calc(-30% * var(--bb-motion)));
       opacity: 0;
     }
+  }
+  /* bluebolt marks: tick lines, hazard cap, bolt, yellow edge */
+  .band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(180deg, transparent 0 22px, rgb(255 255 255 / 0.18) 22px 23px);
+  }
+  .band-haz {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 46px;
+    background: repeating-linear-gradient(-45deg, var(--bb-yellow) 0 8px, #0b0f1a 8px 16px);
+  }
+  .band-bolt {
+    position: absolute;
+    top: 64px;
+    left: 58%;
+    width: 22px;
+    fill: var(--bb-yellow);
+    filter: drop-shadow(2px 2px 0 #0b0f1a);
+  }
+  .band-edge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 9%;
+    width: 12%;
+    background: var(--bb-yellow);
+    clip-path: polygon(98% 0, 100% 0, 63.5% 100%, 61.5% 100%);
+    animation: bb-band-in var(--bb-t-enter) var(--bb-ease) both;
+    pointer-events: none;
   }
   .band-t {
     position: absolute;
@@ -236,7 +273,8 @@
       padding: 0 12px 24px;
       gap: 12px;
     }
-    .band {
+    .band,
+    .band-edge {
       display: none;
     }
     .tl,

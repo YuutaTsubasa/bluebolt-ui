@@ -118,10 +118,22 @@
     padding: 2px 6px 0 0;
     box-sizing: border-box;
     text-align: right;
-    background: #ffffff;
+    background: var(--bb-yellow);
     clip-path: polygon(30% 0, 100% 0, 100% 100%);
-    color: var(--bb-blue);
+    color: #0b0f1a;
     font: 400 1.3rem var(--bb-font-display);
+  }
+  /* bluebolt mark: tick ruler down the left edge */
+  .bb-unit::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+    bottom: 70px;
+    left: 0;
+    width: 6px;
+    background: repeating-linear-gradient(180deg, rgb(255 255 255 / 0.55) 0 1px, transparent 1px 8px);
+    pointer-events: none;
   }
   .role {
     position: absolute;
