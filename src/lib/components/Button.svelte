@@ -1,5 +1,7 @@
 <!--
-  Skewed plate button with hard shadow, hover sheen and press ripple.
+  Button in two shapes sharing one palette:
+  - shape="skew" (default): HUD plate with hard shadow, hover lift, sheen, ripple.
+  - shape="rect": app-style faceted gradient face with a soft shadow (dialogs, settings).
   Renders an <a> when `href` is given.
 -->
 <script>
@@ -7,7 +9,8 @@
 
   /**
    * @type {{
-   *   variant?: 'primary' | 'accent' | 'ink' | 'ghost',
+   *   variant?: 'primary' | 'secondary' | 'accent' | 'ink' | 'ghost',
+   *   shape?: 'skew' | 'rect', block?: boolean,
    *   size?: 'sm' | 'md' | 'lg',
    *   href?: string, type?: 'button' | 'submit' | 'reset', disabled?: boolean,
    *   en?: string, children?: import('svelte').Snippet, [key: string]: unknown
@@ -15,6 +18,8 @@
    */
   let {
     variant = 'primary',
+    shape = 'skew',
+    block = false,
     size = 'md',
     href,
     type = 'button',
@@ -27,7 +32,8 @@
 
 <svelte:element
   this={href ? 'a' : 'button'}
-  class="bb-btn v-{variant} s-{size}"
+  class="bb-btn v-{variant} s-{size} shape-{shape}"
+  class:block
   href={href && !disabled ? href : undefined}
   type={href ? undefined : type}
   disabled={href ? undefined : disabled}
@@ -142,6 +148,53 @@
   }
   .v-ghost .plate {
     border: 2px solid var(--bb-ink);
+  }
+
+  .v-secondary {
+    --_bg: #575870;
+    --_facet: #4a4b62;
+    --_fg: #ffffff;
+  }
+
+  /* ---------- app shape: faceted gradient faces ---------- */
+  .shape-rect {
+    --_face: var(--bb-face-blue);
+    min-width: 8em;
+    padding: 0.8em 2em;
+    font-size: var(--bb-text-sm);
+    letter-spacing: 0.06em;
+  }
+  .shape-rect.v-secondary { --_face: var(--bb-face-gray); }
+  .shape-rect.v-accent { --_face: var(--bb-face-yellow); }
+  .shape-rect.v-ink { --_face: var(--bb-facets), linear-gradient(180deg, #1b2030, #05070c); }
+  .shape-rect.v-ghost { --_face: var(--bb-face-light); --_fg: var(--bb-on-yellow); }
+  .shape-rect .plate,
+  .shape-rect:hover:not(:disabled) .plate,
+  .shape-rect:active:not(:disabled) .plate,
+  .shape-rect:focus-visible .plate {
+    transform: none;
+    background: var(--_face);
+    border: 0;
+    box-shadow: var(--bb-sys-shadow);
+  }
+  .shape-rect.v-ghost .plate {
+    box-shadow: inset 0 0 0 1.5px #0e0f15, var(--bb-sys-shadow);
+  }
+  .shape-rect .label,
+  .shape-rect:hover:not(:disabled) .label,
+  .shape-rect:active:not(:disabled) .label {
+    transform: none;
+    align-items: center;
+  }
+  .shape-rect:hover:not(:disabled) .plate {
+    filter: brightness(1.12);
+  }
+  .shape-rect:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .block {
+    display: flex;
+    width: 100%;
   }
 
   .s-sm { font-size: var(--bb-text-sm); padding: 0.5em 1.2em; }

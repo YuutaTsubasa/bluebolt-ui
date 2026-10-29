@@ -13,6 +13,8 @@
 | 深色 | 直播畫面 | 手機 |
 | --- | --- | --- |
 | ![](docs/screenshots/overview-dark.jpg) | ![](docs/screenshots/stream-light.jpg) | ![](docs/screenshots/mobile.jpg) |
+| 角色選擇 | 排序對話框 | 設定 |
+| ![](docs/screenshots/roster.jpg) | ![](docs/screenshots/sort-dialog.jpg) | ![](docs/screenshots/settings.jpg) |
 
 風格參考 [MatchaChoco010 的 HTML-in-Canvas demo](https://matchachoco010.github.io/demo-html-in-canvas-bot-dashboard/)（該 repo 沒有授權條款，這裡只參考視覺語言，沒有使用它的任何程式碼或素材）。
 
@@ -141,6 +143,22 @@ CSS class：`.bb-shout`（巨大斜體狀態字）、`.bb-script`、`.bb-label`�
 | `ChromeBackground`（`bluebolt-ui/fx`） | WebGL2 液態金屬＋藍色玻璃緞帶背景；`amount` 金屬覆蓋量、`ribbons` 緞帶強度；搭配 `surge()` 做切畫面轉場 |
 | `InkBackground`（`bluebolt-ui/fx`） | WebGL2 墨水網點＋黃色等高線背景，滑鼠攪動；不可見時暫停 |
 
+**應用層元件**（對話框、設定、選擇畫面；同一套藍白黃黑，斜切漸層按鈕＋亮色對話框）：
+
+| 元件 | 說明 |
+| --- | --- |
+| `Button shape="rect"` | 應用風格按鈕：斜切高光的漸層面＋柔和陰影；`variant="secondary"` 是灰色，`ghost` 是白底黑框 |
+| `Modal` | `<dialog>` 對話框：亮色底＋淡斜面、模糊背景；`header="navy"` 有小標＋標題＋藍色細條；`actions` 一排按鈕，或 `split` 變成整條「取消｜OK」；`tone="dark"`；`watermark` 放徽章 |
+| `SectionBar` | 左邊實心藍、往右淡出的段落標題條 |
+| `OptionGrid` | 斜面選項格（排序、篩選），選中變藍；單選或 `multiple` |
+| `DiamondRadio` | 菱形單選列，選中發光、文字變天藍 |
+| `SettingsShell` | 設定畫面：左側斜切藍帶＋直式外框大字、框線導覽、深色半透明內容面板 |
+| `Tag` | 黑底標籤（數量限定、SKILL）、黃色折扣、藍色、外框 |
+| `UnitCard` | 角色卡：切角編號、星等、名稱、等級、屬性菱形；選中藍框發光；`portrait` 放立繪 |
+| `StatList` | 深色標籤＋數值的兩欄能力表 |
+
+說明文字裡的強調用 `.bb-hl`（藍）與 `.bb-hl-y`（黃）；在深色面上加 `.bb-on-dark` 會自動換成亮的版本。
+
 切畫面的做法（demo 的 `src/demo/App.svelte` 就是範例）：`StairMenu` 的 `onchange` 呼叫 `surge()`，內容包在 `{#key screen}` 裡重新掛載，`Panel` 們會依 `delay` 依序飛入，`RingDial` 會自己轉到新區段。
 
 手把輸入也可以單獨用：`onGamepadIntent((intent) => …)`，intent 是 `up`／`down`／`left`／`right`／`confirm`／`back`。
@@ -154,7 +172,7 @@ npm run build    # 建置 demo 到 dist/（確認元件都能編譯）
 ```
 
 - `src/lib/`：套件本體（就是發佈出去的內容）。
-- `src/demo/`：展示頁，用套件名稱 `bluebolt-ui` 匯入，跟使用端的寫法一樣。`App.svelte` 是滿版 HUD 控制台（數字鍵 1–6 切畫面），`Gallery.svelte` 是各元件的展示區塊。
+- `src/demo/`：展示頁，用套件名稱 `bluebolt-ui` 匯入，跟使用端的寫法一樣。`App.svelte` 是滿版 HUD 控制台（數字鍵 1–8 切畫面），`Gallery.svelte` 是各元件的展示區塊，`AppLayer.svelte` 是角色選擇、各種對話框與設定畫面。
 
 ### 發新版
 
