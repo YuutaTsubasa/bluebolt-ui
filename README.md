@@ -152,8 +152,8 @@ CSS class：`.bb-shout`（巨大斜體狀態字）、`.bb-script`、`.bb-label`�
 | `SectionBar` | 左邊實心藍、往右淡出的段落標題條 |
 | `OptionGrid` | 斜面選項格（排序、篩選），選中變藍；單選或 `multiple` |
 | `DiamondRadio` | 菱形單選列，選中發光、文字變天藍 |
-| `SettingsShell` | 設定畫面：左側斜切藍帶＋直式外框大字、框線導覽、深色半透明內容面板 |
-| `Tag` | 黑底標籤（數量限定、SKILL）、黃色折扣、藍色、外框 |
+| `SettingsShell` | 設定畫面：左側斜切藍帶（黃邊、警示條、閃電、刻度）＋直式外框大字、框線導覽、深色半透明內容面板 |
+| `Tag` | 黑底標籤（限購、BOOST）、黃色折扣、藍色、外框 |
 | `UnitCard` | 角色卡：切角編號、星等、名稱、等級、屬性菱形；選中藍框發光；`portrait` 放立繪 |
 | `StatList` | 深色標籤＋數值的兩欄能力表 |
 

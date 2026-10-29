@@ -30,7 +30,7 @@
     { id: 'u7', name: '燈塔', sub: 'Lighthouse', level: 1, stars: 1, attr: 'yellow', role: '◇' },
     { id: 'u8', name: '潮汐', sub: 'Default', level: 1, stars: 1, attr: 'ink', role: '◈' },
     { id: 'u9', name: '流星', sub: 'Meteor', level: 1, stars: 1, attr: 'white', role: '✶' },
-    { id: 'u10', name: '極光', sub: 'Aurora', level: 1, stars: 1, attr: 'blue', role: '///', badge: '重複' },
+    { id: 'u10', name: '極光', sub: 'Aurora', level: 1, stars: 1, attr: 'blue', role: '///', badge: 'NEW' },
   ];
   /** @type {string[]} */
   let party = $state(['u1', 'u2', 'u3', 'u4', 'u5', 'u6']);
@@ -41,7 +41,7 @@
     focus = id;
     if (party.includes(id)) party = party.filter((p) => p !== id);
     else if (party.length < 6) party = [...party, id];
-    else toast({ title: '隊伍已滿（最多 6 人）', en: 'Party Full', tone: 'warn' });
+    else toast({ title: '車隊已滿（最多 6 人）', en: 'Team Full', tone: 'warn' });
   }
 
   let sortOpen = $state(false);
@@ -55,7 +55,7 @@
   const navItems = [
     { id: 'general', label: '一般', icon: '⚙' },
     { id: 'sound', label: '音效', icon: '♪' },
-    { id: 'story', label: '劇情', icon: '✎' },
+    { id: 'story', label: '字幕', icon: '✎' },
     { id: 'notice', label: '通知', icon: '◔' },
     { id: 'account', label: '帳號', icon: '◍' },
     { id: 'support', label: '支援', icon: '?' },
@@ -94,34 +94,34 @@
       </div>
       <div class="lvrow">
         <span class="lv">Lv.<b>{cur.level}</b></span>
-        <Tag variant="blue">覺醒強化</Tag>
+        <Tag variant="blue">升級</Tag>
       </div>
       <StatList
         items={[
-          { icon: '♥', label: 'HP', value: 198 + cur.level * 12 },
-          { icon: '⚡', label: '攻擊速度', value: 'A+' },
-          { icon: '⚔', label: '攻擊力', value: 157 + cur.level * 5 },
-          { icon: '»', label: '抵抗力', value: 50 },
-          { icon: '◆', label: '物理防禦', value: 0 },
-          { icon: '©', label: '費用', value: 11 },
-          { icon: '⬡', label: '特殊防禦', value: 0 },
-          { icon: '↻', label: '再出擊', value: 35 },
+          { icon: '»', label: '極速', value: 180 + cur.level * 2 },
+          { icon: '⚡', label: '加速', value: 'A' },
+          { icon: '↺', label: '操控', value: 64 + cur.level },
+          { icon: '◆', label: '耐久', value: 120 },
+          { icon: '♪', label: '人氣', value: 1280 + cur.level * 40 },
+          { icon: '✦', label: '技巧', value: 'B+' },
+          { icon: '◷', label: '最佳圈速', value: '1:12.4' },
+          { icon: '★', label: '勝場', value: cur.level * 3 },
         ]}
       />
       <div class="skill">
-        <b>天穹流 鬼哭</b>
-        <div><Tag size="sm">SKILL</Tag> Lv.1</div>
-        <p>對前方造成攻擊力 <span class="bb-hl">16%</span> 的 <span class="bb-hl">5 段</span>物理傷害，共施放 <span class="bb-hl">1 次</span>。</p>
+        <b>雷光衝刺</b>
+        <div><Tag size="sm">BOOST</Tag> Lv.1</div>
+        <p>衝刺時速度提升 <span class="bb-hl">12%</span>，持續 <span class="bb-hl">3 秒</span>，每場比賽可用 <span class="bb-hl">2 次</span>。</p>
       </div>
-      <Button shape="rect" block onclick={() => (compareOpen = true)}>完了</Button>
+      <Button shape="rect" block onclick={() => (compareOpen = true)}>決定</Button>
     </aside>
 
     <section class="grid-area">
       <div class="tools">
-        <Button shape="rect" variant="ink" size="sm" onclick={() => (party = [])}>🗑 一括解除</Button>
+        <Button shape="rect" variant="ink" size="sm" onclick={() => (party = [])}>🗑 全部移除</Button>
         <span class="sp"></span>
-        <Tag>推薦屬性 ◆</Tag>
-        <span class="sortlbl">{({ role: '職業順', level: '等級順', rare: '稀有度' })[sortKey] ?? '排序'}</span>
+        <Tag>推薦顏色 ◆</Tag>
+        <span class="sortlbl">{({ role: '類型順', level: '等級順', rare: '稀有度' })[sortKey] ?? '排序'}</span>
         <Button shape="rect" variant="ink" size="sm" onclick={() => (sortOpen = true)}>☰ 排序</Button>
         <Button shape="rect" variant="ghost" size="sm" onclick={() => (storyOpen = true)}>劇情框</Button>
         <Button shape="rect" variant="ghost" size="sm" onclick={() => (shopOpen = true)}>商店框</Button>
@@ -145,12 +145,12 @@
         options={[
           { value: 'level', label: '等級順', icon: 'Lv.' },
           { value: 'rare', label: '稀有度', icon: '★' },
-          { value: 'role', label: '職業順', icon: '♟' },
-          { value: 'awake', label: '覺醒度', icon: '▽' },
-          { value: 'get', label: '取得順', icon: '◷' },
+          { value: 'role', label: '類型順', icon: '♟' },
+          { value: 'speed', label: '極速', icon: '»' },
+          { value: 'get', label: '加入順', icon: '◷' },
           { value: 'name', label: '名稱順', icon: '≡' },
-          { value: 'hp', label: 'HP', icon: '♥' },
-          { value: 'atk', label: '攻擊力', icon: '⚔' },
+          { value: 'grip', label: '操控', icon: '↺' },
+          { value: 'fans', label: '人氣', icon: '♪' },
         ]}
       />
     </div>
@@ -180,37 +180,37 @@
     bind:open={compareOpen}
     tone="dark"
     header="none"
-    title="更換武器"
+    title="更換機翼"
     width="1000px"
     split
     actions={[
       { label: '取消', variant: 'secondary' },
-      { label: 'OK', variant: 'primary', onclick: () => toast({ title: '已更換武器', en: 'Equipped', tone: 'success' }) },
+      { label: 'OK', variant: 'primary', onclick: () => toast({ title: '已更換機翼', en: 'Equipped', tone: 'success' }) },
     ]}
   >
     <div class="compare">
-      {#each [{ n: '晴空之刃：SOL', hp: 100, main: '兩名以上破壞手出擊時，破壞手受到的傷害減少', v1: '1%', sub: '破壞手的 HP 提升', v2: '5%' }, { n: 'J E T', hp: 30, main: '出擊中的支援手 BLADE 量表累積量提升', v1: '2%', sub: '支援手的物理防禦提升', v2: '2.5' }] as w, i}
+      {#each [{ n: '疾風翼 MK-II', hp: 92, main: '直線衝刺時最高速度提升', v1: '3%', sub: '連續過彎 3 次後', v2: '加速 0.2 秒' }, { n: '雷光翼 J-7', hp: 78, main: '起跑後 5 秒內加速度提升', v1: '6%', sub: '撞牆時速度損失減少', v2: '15%' }] as w, i}
         <div class="wpn">
           <h3 class="serif">{w.n}</h3>
-          <div class="erode">侵蝕率 <b>0</b>%</div>
+          <div class="erode">調校度 <b>0</b>%</div>
           <div class="wl">Lv. <b>1</b></div>
-          <div class="sh">狀態</div>
-          <StatList columns={1} items={[{ icon: '♥', label: '命運 HP', value: '3,000' }, { icon: '♥', label: '騎士 HP', value: w.hp }]} />
-          <div class="sh">主技能</div>
+          <div class="sh">性能</div>
+          <StatList columns={1} items={[{ icon: '»', label: '極速', value: 186 }, { icon: '↺', label: '操控', value: w.hp }]} />
+          <div class="sh">主效果</div>
           <p>{w.main} <span class="bb-hl">{w.v1}</span>。</p>
-          <div class="sh">副技能</div>
-          <p><span class="bb-hl">{w.sub}</span> {w.v2}。<br /><span class="bb-hl-y">侵蝕率每 20%，上述效果提升 0.1</span></p>
+          <div class="sh">副效果</div>
+          <p><span class="bb-hl">{w.sub}</span>，{w.v2}。<br /><span class="bb-hl-y">調校度每 25%，效果再提升 0.5%</span></p>
         </div>
         {#if i === 0}<span class="arrow" aria-hidden="true">»</span>{/if}
       {/each}
     </div>
-    <p class="ask">要更換武器嗎？</p>
+    <p class="ask">要換上新的機翼嗎？</p>
   </Modal>
 
   <Modal
     bind:open={storyOpen}
-    sub="第零章 第一話"
-    title="像是魔王的東西－1"
+    sub="序章 第一話"
+    title="藍色閃電的邀請"
     width="900px"
     actions={[
       { label: '返回', variant: 'secondary' },
@@ -218,34 +218,34 @@
     ]}
   >
     {#snippet watermark()}{@render emblem()}{/snippet}
-    <p class="story">突然遭到神祕人物襲擊的少年，努力拼湊自己為何會落到這個地步的記憶。故事從這裡開始。這是一位魔王的故事——</p>
+    <p class="story">開播前五分鐘，攝影棚的燈突然全部熄滅。只剩螢幕上一道藍色閃電還在跳動——今晚的節目，好像跟平常不太一樣。</p>
   </Modal>
 
-  <Modal bind:open={shopOpen} header="none" title="兌換商品" width="760px">
+  <Modal bind:open={shopOpen} header="none" title="應援商店" width="760px">
     <div class="shop">
       <div class="item">
-        <div class="pic" aria-hidden="true"><span class="cnt">13</span></div>
+        <div class="pic" aria-hidden="true"><span class="cnt">3</span></div>
         <div class="own">持有數：0</div>
-        <div class="price">單價 <s>1,980</s> <b>0</b> <Tag variant="yellow" size="sm">-100%</Tag></div>
+        <div class="price">單價 <s>600</s> <b>300</b> <Tag variant="yellow" size="sm">-50%</Tag></div>
       </div>
       <div class="desc">
-        <b>攜帶型能量膠 ×13</b>
-        <p>臨時用的有機能量膠。用於騎士的覺醒強化。</p>
+        <b>應援閃光燈 ×3</b>
+        <p>會隨聊天室熱度變色的應援燈，下一場直播時可以點亮。</p>
       </div>
     </div>
     {#snippet footer()}
       <div class="shop-foot">
-        <Tag>數量限定：1</Tag>
-        <span class="lic">BLUEBOLT OFFICIAL SHOP-13th</span>
+        <Tag>每人限購：1</Tag>
+        <span class="lic">BLUEBOLT STREAM GOODS · No.0027</span>
       </div>
       <div class="shop-foot r">
-        <span class="cost">消費道具 <b>0</b></span>
-        <Button shape="rect" block onclick={() => { shopOpen = false; toast({ title: '兌換完成', en: 'Exchanged', tone: 'success' }); }}>兌換</Button>
+        <span class="cost">需要點數 <b>300</b></span>
+        <Button shape="rect" block onclick={() => { shopOpen = false; toast({ title: '已加入應援清單', en: 'Added', tone: 'success' }); }}>兌換</Button>
       </div>
     {/snippet}
   </Modal>
 {:else}
-  <SettingsShell items={navItems} bind:active={nav}>
+  <SettingsShell title="SYSTEM CONFIG" items={navItems} bind:active={nav}>
     {#snippet topLeft()}
       <Button shape="rect" variant="ink" size="sm" onclick={onexit}>«</Button>
       <Button shape="rect" variant="ink" size="sm">≡</Button>
@@ -256,17 +256,17 @@
       <Button shape="rect" size="sm" onclick={() => toast({ title: '設定已重設', en: 'Reset' })}>重設</Button>
     {/snippet}
     {#if nav === 'story'}
-      <SectionBar title="劇情" en="Story" />
+      <SectionBar title="字幕" en="Caption" />
       <div class="preview" aria-hidden="true">
-        <b>藍翼</b><span>// 藍翼的書房</span>
+        <b>藍翼</b><span>// 第 3 號賽道</span>
         <em>
           {#key textSpeed}
-            <span class="type" style:--spd={({ slow: '3.2s', normal: '1.8s', fast: '0.8s' })[textSpeed]}>書頁翻動的聲音在房間裡迴盪……</span>
+            <span class="type" style:--spd={({ slow: '3.2s', normal: '1.8s', fast: '0.8s' })[textSpeed]}>引擎聲在空蕩蕩的維修區裡迴盪……</span>
           {/key}
         </em>
       </div>
       <DiamondRadio label="文字顯示速度" options={speeds} bind:value={textSpeed} />
-      <DiamondRadio label="翻頁速度" options={speeds} bind:value={pageSpeed} />
+      <DiamondRadio label="自動前進速度" options={speeds} bind:value={pageSpeed} />
     {:else if nav === 'sound'}
       <SectionBar title="音效" en="Sound" />
       <div class="gap"></div>

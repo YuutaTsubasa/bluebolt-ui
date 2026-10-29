@@ -101,7 +101,7 @@
       <div class="split">
         {#each actions as a, i}
           <button type="button" class="half v-{a.variant ?? (i === actions.length - 1 ? 'primary' : 'secondary')}" onclick={() => run(a)}>
-            <span class="mark" aria-hidden="true">{(a.variant ?? (i === actions.length - 1 ? 'primary' : 'secondary')) === 'primary' ? '✓' : '✕'}</span>
+            <span class="mark" aria-hidden="true"></span>
             <span class="lbl">{a.label}</span>
           </button>
         {/each}
@@ -171,14 +171,15 @@
     background: linear-gradient(90deg, var(--bb-navy) 0 45%, #4b5265 75%, #e0e1e3);
     color: #ffffff;
   }
+  /* bluebolt mark: blue + yellow double bar */
   .bar {
     position: absolute;
-    left: 78px;
+    left: 74px;
     top: 14px;
     bottom: 14px;
-    width: 4px;
-    background: #0070f2;
-    box-shadow: 0 0 8px #0070f2;
+    width: 10px;
+    background: linear-gradient(90deg, var(--bb-blue) 0 4px, transparent 4px 6px, var(--bb-yellow) 6px);
+    transform: skewX(var(--bb-skew));
   }
   .txt {
     display: flex;
@@ -241,15 +242,19 @@
     outline-offset: -3px;
     box-shadow: none;
   }
+  /* bluebolt mark: faint hazard band across each half */
   .mark {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-130%, -50%);
-    font-size: 80px;
-    line-height: 1;
-    opacity: 0.12;
+    left: 18%;
+    top: 0;
+    bottom: 0;
+    width: 22%;
+    background: repeating-linear-gradient(-45deg, rgb(255 255 255 / 0.14) 0 8px, transparent 8px 16px);
+    transform: skewX(var(--bb-skew));
     pointer-events: none;
+  }
+  .half.v-primary .mark {
+    background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--bb-yellow) 35%, transparent) 0 8px, transparent 8px 16px);
   }
   .lbl {
     position: relative;
