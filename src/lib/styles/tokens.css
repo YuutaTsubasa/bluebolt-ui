@@ -41,6 +41,20 @@
   --bb-hud-dot: rgb(11 15 26 / 0.16);
   --bb-strip: #0b0f1a; /* black header strips */
   --bb-on-strip: #ffffff;
+  /* app layer (dialogs, settings, selection screens): faceted gradient faces */
+  --bb-facets: linear-gradient(118deg, rgb(255 255 255 / 0.16) 0 26%, transparent 26% 58%, rgb(255 255 255 / 0.07) 58% 74%, transparent 74%);
+  --bb-face-blue: var(--bb-facets), linear-gradient(180deg, #2a4be2, #1030c9);
+  --bb-face-gray: var(--bb-facets), linear-gradient(180deg, #6b6d87, #474960);
+  --bb-face-light: linear-gradient(118deg, rgb(255 255 255 / 0.75) 0 30%, transparent 30%), linear-gradient(180deg, #fbfcff, #dfe2ec);
+  --bb-face-yellow: linear-gradient(180deg, #ffe066, #ffc800);
+  --bb-navy: #1e263d; /* dialog header */
+  --bb-sky: #3d9bff; /* highlight text and glow on dark surfaces */
+  --bb-sys-panel: #f6f7fb; /* light dialog body */
+  --bb-sys-panel-2: #e9ebf3; /* its faint diagonal shapes */
+  --bb-sys-dark: rgb(16 20 28 / 0.84); /* dark settings panel */
+  --bb-sys-dark-edge: rgb(255 255 255 / 0.5);
+  --bb-sys-shadow: 0 3px 6px rgb(0 0 0 / 0.32);
+
   /* the inverted "ink" panel stays dark in both themes */
   --bb-panel-ink: #0b0f1a;
 

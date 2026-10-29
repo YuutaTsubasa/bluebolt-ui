@@ -19,6 +19,7 @@
   } from 'bluebolt-ui';
   import { ChromeBackground, surge } from 'bluebolt-ui/fx';
   import Gallery from './Gallery.svelte';
+  import AppLayer from './AppLayer.svelte';
 
   const screens = [
     { id: 'overview', en: 'Overview', zh: '總覽' },
@@ -27,10 +28,13 @@
     { id: 'games', en: 'Games', zh: '遊戲' },
     { id: 'metrics', en: 'Metrics', zh: '數據' },
     { id: 'controls', en: 'Controls', zh: '元件' },
+    { id: 'roster', en: 'Roster', zh: '角色' },
+    { id: 'system', en: 'System', zh: '設定' },
   ];
   let screen = $state('overview');
   const idx = $derived(screens.findIndex((s) => s.id === screen));
   const isOverview = $derived(screen === 'overview');
+  const isApp = $derived(screen === 'roster' || screen === 'system');
 
   let theme = $state('auto');
   let motion = $state('auto');
@@ -77,7 +81,7 @@
 <ChromeBackground amount={isOverview ? 0.85 : 0.6} ribbons={0.85} />
 <HudBackdrop label="BLUEBOLT — STREAM CONSOLE — 2026" />
 
-<div class="stage" class:overview={isOverview}>
+<div class="stage" class:overview={isOverview} class:app={isApp} class:sys={screen === 'system'}>
   <!-- left: brand + stair menu -->
   <aside class="nav">
     <div class="brand">
@@ -172,7 +176,7 @@
           </Panel>
         </div>
       {:else if screen === 'stream'}
-        <div class="sec-head"><ScreenTitle num="02" en="Stream Control" title="直播" total="06" desc="開播、暫停、收播的流程與狀態。數字鍵 1–6 切換畫面。" /></div>
+        <div class="sec-head"><ScreenTitle num="02" en="Stream Control" title="直播" total="08" desc="開播、暫停、收播的流程與狀態。數字鍵 1–8 切換畫面。" /></div>
         <div class="vert"><VerticalText text="直播中" caption="2026.10.27 TUE." sub="13:00 Started" /></div>
         <div class="col-l">
           <Panel num="B" title="/health & Guard" sub="檢查" from="left" delay={100}>
@@ -205,14 +209,21 @@
             <Barcode value="history-48h" showText />
           </Panel>
         </div>
+      {:else if isApp}
+        {#if screen === 'roster'}
+          <div class="sec-head"><ScreenTitle num="07" en="Roster" title="角色" total="08" desc="點卡片編入隊伍（最多 6 人）。完了／排序／劇情框／商店框會開對話框。" /></div>
+        {/if}
+        <div class="applayer" class:full={screen === 'system'}>
+          <AppLayer section={screen} onexit={() => { screen = 'overview'; surge(); }} />
+        </div>
       {:else}
         <div class="sec-head">
           <ScreenTitle
             num={String(idx + 1).padStart(2, '0')}
             en={screens[idx].en}
             title={screens[idx].zh}
-            total="06"
-            desc="元件展示。數字鍵 1–6 切換畫面。"
+            total="08"
+            desc="元件展示。數字鍵 1–8 切換畫面。"
           />
         </div>
         <div class="gallery">
@@ -226,7 +237,7 @@
 <Ticker
   build="bluebolt / stream console — build 2026.10"
   {log}
-  keys={[{ k: '1-6', v: '畫面' }, { k: 'Tab', v: '移動' }, { k: 'Enter', v: '決定' }]}
+  keys={[{ k: '1-8', v: '畫面' }, { k: 'Tab', v: '移動' }, { k: 'Enter', v: '決定' }]}
 >
     
     <Segmented
@@ -723,6 +734,32 @@
   .hist span {
     color: var(--bb-yellow);
     margin-right: 8px;
+  }
+  /* the settings screen takes over the whole stage; number keys still switch back */
+  .stage.sys .nav {
+    display: none;
+  }
+  .stage.app .dial-wrap {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .dial-wrap {
+    transition:
+      transform 1s var(--bb-ease),
+      left 1s var(--bb-ease),
+      top 1s var(--bb-ease),
+      opacity var(--bb-dur-3);
+  }
+  .applayer {
+    position: absolute;
+    left: calc(min(30vw, 440px) * 0.62 + 30px);
+    right: 14px;
+    top: 150px;
+    bottom: 40px;
+  }
+  .applayer.full {
+    inset: 0 0 30px 0;
+    z-index: 10;
   }
   .gallery {
     position: absolute;

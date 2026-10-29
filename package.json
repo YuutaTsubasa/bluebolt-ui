@@ -1,6 +1,6 @@
 {
   "name": "bluebolt-ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Blue / white / yellow / black game-HUD UI kit for Svelte 5: design tokens, motion actions, components and an optional WebGL2 background.",
   "type": "module",
   "license": "UNLICENSED",

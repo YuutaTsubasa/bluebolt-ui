@@ -30,6 +30,16 @@ export { default as DateCard } from './components/DateCard.svelte';
 export { default as Ticker } from './components/Ticker.svelte';
 export { default as LaneList } from './components/LaneList.svelte';
 
+// App layer (dialogs, settings, selection screens)
+export { default as SectionBar } from './components/SectionBar.svelte';
+export { default as Modal } from './components/Modal.svelte';
+export { default as OptionGrid } from './components/OptionGrid.svelte';
+export { default as DiamondRadio } from './components/DiamondRadio.svelte';
+export { default as SettingsShell } from './components/SettingsShell.svelte';
+export { default as Tag } from './components/Tag.svelte';
+export { default as UnitCard } from './components/UnitCard.svelte';
+export { default as StatList } from './components/StatList.svelte';
+
 // Motion & input
 export { wipe, sheen, ripple, inView, reducedMotion, setMotion, setTheme, splitChars } from './motion/index.js';
 export { onGamepadIntent } from './input/gamepad.js';

@@ -72,6 +72,22 @@ body {
     0.07em 0.07em 0 var(--bb-ink);
 }
 
+/* inline emphasis inside descriptions: blue keywords, yellow numbers / conditions */
+.bb-hl {
+  color: var(--bb-blue-text);
+  font-weight: 700;
+}
+.bb-hl-y {
+  color: var(--bb-yellow-deep);
+  font-weight: 700;
+}
+:where(.bb-on-dark) .bb-hl {
+  color: var(--bb-sky);
+}
+:where(.bb-on-dark) .bb-hl-y {
+  color: var(--bb-yellow);
+}
+
 /* small handwritten accent */
 .bb-script {
   font-family: var(--bb-font-script);
