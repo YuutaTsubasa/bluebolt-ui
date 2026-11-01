@@ -31,7 +31,7 @@
     width: 10px;
     height: 10px;
     transform: rotate(45deg);
-    background: var(--bb-blue);
+    background: var(--bb-primary);
   }
   .zh {
     font-weight: 700;
@@ -39,7 +39,7 @@
   }
   .en {
     margin-left: 6px;
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 600;
     font-size: var(--bb-text-xs);
     letter-spacing: 0.18em;
@@ -47,14 +47,14 @@
     color: var(--bb-ink-3);
   }
   .s-live .dot {
-    background: var(--bb-yellow);
+    background: var(--bb-signal);
     box-shadow: 0 0 0 1.5px var(--bb-panel-ink);
   }
   .s-live .dot::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--bb-yellow);
+    background: var(--bb-signal);
     opacity: 0;
     animation: bb-pulse 1.4s var(--bb-ease) infinite;
   }
@@ -64,7 +64,7 @@
   .s-warn .dot {
     transform: none;
     width: 14px;
-    background: repeating-linear-gradient(-45deg, var(--bb-yellow) 0 3px, var(--bb-panel-ink) 3px 6px);
+    background: repeating-linear-gradient(-45deg, var(--bb-signal) 0 3px, var(--bb-panel-ink) 3px 6px);
   }
   .s-off .dot {
     background: var(--bb-ink-4);

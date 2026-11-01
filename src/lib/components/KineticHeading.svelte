@@ -37,11 +37,11 @@
     place-items: center;
     min-width: 1.6em;
     padding: 0.12em 0.3em 0.08em;
-    background: var(--bb-yellow);
-    color: var(--bb-on-yellow);
+    background: var(--bb-signal);
+    color: var(--bb-on-signal);
     transform: skewX(var(--bb-skew));
     font-size: 2.6rem;
-    box-shadow: 4px 4px 0 var(--bb-panel-ink);
+    box-shadow: calc(4px * var(--bb-hard)) calc(4px * var(--bb-hard)) 0 var(--bb-panel-ink), var(--bb-glow);
   }
   .num > span {
     transform: skewX(calc(-1 * var(--bb-skew)));
@@ -52,12 +52,12 @@
     min-width: 0;
   }
   .txt :global(.en) {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 700;
     font-size: var(--bb-text-sm);
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--bb-blue-text);
+    color: var(--bb-primary-text);
   }
   .txt :global(.zh) {
     margin: 0;
@@ -87,6 +87,6 @@
   }
   .s-hero .txt :global(.en) {
     background: var(--bb-panel-ink);
-    color: var(--bb-yellow);
+    color: var(--bb-signal);
   }
 </style>

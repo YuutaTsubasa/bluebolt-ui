@@ -117,11 +117,11 @@
     background: transparent;
     width: min(var(--w), calc(100vw - 24px));
     max-width: none;
-    color: var(--bb-on-yellow);
+    color: var(--bb-on-signal);
     overflow: visible;
   }
   .bb-modal::backdrop {
-    background: rgb(10 14 26 / 0.45);
+    background: var(--bb-scrim);
     backdrop-filter: blur(8px) saturate(0.8);
     -webkit-backdrop-filter: blur(8px) saturate(0.8);
   }
@@ -168,8 +168,8 @@
     align-items: center;
     gap: 14px;
     padding: 14px 24px 14px 92px;
-    background: linear-gradient(90deg, var(--bb-navy) 0 45%, #4b5265 75%, #e0e1e3);
-    color: #ffffff;
+    background: var(--bb-face-header);
+    color: var(--bb-white);
   }
   /* bluebolt mark: blue + yellow double bar */
   .bar {
@@ -178,7 +178,7 @@
     top: 14px;
     bottom: 14px;
     width: 10px;
-    background: linear-gradient(90deg, var(--bb-blue) 0 4px, transparent 4px 6px, var(--bb-yellow) 6px);
+    background: linear-gradient(90deg, var(--bb-primary) 0 4px, transparent 4px 6px, var(--bb-signal) 6px);
     transform: skewX(var(--bb-skew));
   }
   .txt {
@@ -223,7 +223,7 @@
     overflow: hidden;
     height: 60px;
     border: 0;
-    color: #ffffff;
+    color: var(--bb-white);
     font: inherit;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -232,13 +232,13 @@
     transition: filter var(--bb-dur-2);
   }
   .half.v-primary {
-    background: var(--bb-face-blue);
+    background: var(--bb-face-primary);
   }
   .half:hover {
     filter: brightness(1.12);
   }
   .half:focus-visible {
-    outline: 3px solid var(--bb-yellow);
+    outline: 3px solid var(--bb-signal);
     outline-offset: -3px;
     box-shadow: none;
   }
@@ -254,7 +254,7 @@
     pointer-events: none;
   }
   .half.v-primary .mark {
-    background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--bb-yellow) 35%, transparent) 0 8px, transparent 8px 16px);
+    background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--bb-signal) 35%, transparent) 0 8px, transparent 8px 16px);
   }
   .lbl {
     position: relative;
@@ -262,7 +262,7 @@
 
   .t-dark .card {
     background: var(--bb-sys-dark);
-    color: #ffffff;
+    color: var(--bb-white);
     box-shadow: inset 0 0 0 1px var(--bb-sys-dark-edge), 0 18px 40px rgb(0 0 0 / 0.5);
   }
   .t-dark .deco {

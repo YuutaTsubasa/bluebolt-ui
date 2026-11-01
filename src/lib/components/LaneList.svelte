@@ -44,7 +44,7 @@
     padding-right: 12px;
     background: var(--bb-strip);
     color: var(--bb-on-strip);
-    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    clip-path: polygon(calc(8px * var(--bb-slant)) 0, 100% 0, calc(100% - 8px * var(--bb-slant)) 100%, 0 100%);
     animation: bb-lane-in var(--bb-t-enter) var(--bb-ease) both;
     animation-delay: calc((var(--bb-delay) + var(--i) * 60ms) * var(--bb-motion));
   }
@@ -61,11 +61,11 @@
     background: var(--bb-surface);
     color: var(--bb-ink);
     font: italic 400 15px var(--bb-font-display);
-    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    clip-path: polygon(calc(8px * var(--bb-slant)) 0, 100% 0, calc(100% - 8px * var(--bb-slant)) 100%, 0 100%);
   }
   li.active .code {
-    background: var(--bb-blue);
-    color: var(--bb-on-blue);
+    background: var(--bb-primary);
+    color: var(--bb-on-primary);
   }
   .nm {
     display: flex;
@@ -77,10 +77,10 @@
     font-weight: 900;
   }
   .nm small {
-    font: 700 8px var(--bb-font-cond);
+    font: 700 8px var(--bb-font-tech);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--bb-blue-2);
+    color: var(--bb-primary-2);
   }
   .note {
     font-size: 11px;
@@ -90,7 +90,7 @@
     text-overflow: ellipsis;
   }
   small {
-    font: 700 9px var(--bb-font-cond);
+    font: 700 9px var(--bb-font-tech);
     letter-spacing: 0.08em;
     color: var(--bb-on-ink-2);
   }
@@ -112,12 +112,12 @@
   .bar span {
     display: block;
     height: 100%;
-    background: var(--bb-blue-2);
+    background: var(--bb-primary-2);
   }
   .val {
     min-width: 3.2em;
     text-align: right;
     font: italic 400 20px var(--bb-font-display);
-    color: var(--bb-yellow);
+    color: var(--bb-signal);
   }
 </style>

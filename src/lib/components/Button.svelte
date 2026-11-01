@@ -50,10 +50,10 @@
 
 <style>
   .bb-btn {
-    --_bg: var(--bb-blue);
-    --_fg: var(--bb-on-blue);
+    --_bg: var(--bb-primary);
+    --_fg: var(--bb-on-primary);
     --_shadow: var(--bb-panel-ink);
-    --_facet: var(--bb-blue-shade); /* diagonal darker facet on the right */
+    --_facet: var(--bb-primary-shade); /* diagonal darker facet on the right */
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -91,7 +91,7 @@
     transition: transform var(--bb-dur-3) var(--bb-ease);
   }
   .en {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-size: 0.62em;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -101,7 +101,7 @@
   .bb-btn:hover:not(:disabled) .plate,
   .bb-btn:focus-visible .plate {
     transform: skewX(var(--bb-skew)) translate(calc(-4px * var(--bb-motion)), calc(-4px * var(--bb-motion)));
-    box-shadow: 5px 5px 0 0 var(--_shadow);
+    box-shadow: calc(5px * var(--bb-hard)) calc(5px * var(--bb-hard)) 0 0 var(--_shadow), var(--bb-glow);
   }
   .bb-btn:hover:not(:disabled) .label,
   .bb-btn:focus-visible .label {
@@ -121,20 +121,20 @@
     box-shadow: none;
   }
   .bb-btn:focus-visible .plate {
-    outline: 3px solid var(--bb-yellow);
+    outline: 3px solid var(--bb-signal);
     outline-offset: 3px;
   }
 
   .v-accent {
     --_facet: var(--_bg);
-    --_bg: var(--bb-yellow);
-    --_fg: var(--bb-on-yellow);
+    --_bg: var(--bb-signal);
+    --_fg: var(--bb-on-signal);
   }
   .v-ink {
     --_facet: var(--_bg);
     --_bg: var(--bb-panel-ink);
     --_fg: var(--bb-on-ink);
-    --_shadow: var(--bb-blue);
+    --_shadow: var(--bb-primary);
   }
   .v-ink .plate {
     /* keeps the plate visible when the page itself is dark */
@@ -144,30 +144,30 @@
     --_facet: var(--_bg);
     --_bg: transparent;
     --_fg: var(--bb-ink);
-    --_shadow: var(--bb-blue);
+    --_shadow: var(--bb-primary);
   }
   .v-ghost .plate {
-    border: 2px solid var(--bb-ink);
+    border: var(--bb-stroke) solid var(--bb-stroke-color);
   }
 
   .v-secondary {
-    --_bg: #575870;
-    --_facet: #4a4b62;
-    --_fg: #ffffff;
+    --_bg: var(--bb-gray);
+    --_facet: var(--bb-gray-shade);
+    --_fg: var(--bb-white);
   }
 
   /* ---------- app shape: faceted gradient faces ---------- */
   .shape-rect {
-    --_face: var(--bb-face-blue);
+    --_face: var(--bb-face-primary);
     min-width: 8em;
     padding: 0.8em 2em;
     font-size: var(--bb-text-sm);
     letter-spacing: 0.06em;
   }
   .shape-rect.v-secondary { --_face: var(--bb-face-gray); }
-  .shape-rect.v-accent { --_face: var(--bb-face-yellow); }
-  .shape-rect.v-ink { --_face: var(--bb-facets), linear-gradient(180deg, #1b2030, #05070c); }
-  .shape-rect.v-ghost { --_face: var(--bb-face-light); --_fg: var(--bb-on-yellow); }
+  .shape-rect.v-accent { --_face: var(--bb-face-signal); }
+  .shape-rect.v-ink { --_face: var(--bb-face-ink); }
+  .shape-rect.v-ghost { --_face: var(--bb-face-light); --_fg: var(--bb-on-signal); }
   .shape-rect .plate,
   .shape-rect:hover:not(:disabled) .plate,
   .shape-rect:active:not(:disabled) .plate,

@@ -126,19 +126,19 @@
     letter-spacing: 0.005em;
     -webkit-text-stroke: 0.06em var(--bb-ink);
     paint-order: stroke fill;
-    text-shadow: 0.05em 0.06em 0 rgb(11 15 26 / 0.18);
+    text-shadow: calc(0.05em * var(--bb-hard)) calc(0.06em * var(--bb-hard)) 0 rgb(11 15 26 / calc(0.18 * var(--bb-hard)));
     transition: -webkit-text-stroke-color var(--bb-dur-2), color var(--bb-dur-2), font-size var(--bb-dur-4) var(--bb-ease);
   }
   .zh {
     align-self: center;
-    font-family: var(--bb-font-zh);
+    font-family: var(--bb-font-body);
     font-weight: 900;
     font-size: 0.26em;
     color: var(--bb-ink);
     letter-spacing: 0.04em;
   }
   .no {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 700;
     font-size: 0.2em;
     color: var(--bb-ink-3);
@@ -151,7 +151,7 @@
     transform: skewX(var(--bb-skew)) scaleX(0);
     transform-origin: left center;
     transition: transform var(--bb-dur-3) var(--bb-ease);
-    box-shadow: 0.08em 0.08em 0 var(--bb-blue);
+    box-shadow: calc(0.08em * var(--bb-hard)) calc(0.08em * var(--bb-hard)) 0 var(--bb-primary), var(--bb-glow);
   }
   button:hover:not(.on),
   button:focus-visible:not(.on) {
@@ -162,23 +162,23 @@
     box-shadow: none;
   }
   button:focus-visible .en {
-    -webkit-text-stroke-color: var(--bb-blue);
+    -webkit-text-stroke-color: var(--bb-primary);
   }
   button.on .strip {
     transform: skewX(var(--bb-skew)) scaleX(1);
   }
   button.on .en {
-    color: var(--bb-blue-2);
+    color: var(--bb-primary-2);
     -webkit-text-stroke: 0;
     text-shadow: none;
   }
   button.on .zh {
     padding: 0.08em 0.3em;
-    background: var(--bb-yellow);
-    color: var(--bb-on-yellow);
+    background: var(--bb-signal);
+    color: var(--bb-on-signal);
   }
   button.on .no {
-    color: var(--bb-yellow);
+    color: var(--bb-signal);
   }
 
   /* compact: a small side list */
@@ -201,6 +201,6 @@
     font-size: 0.45em;
   }
   .compact button.on .en {
-    color: var(--bb-blue-2);
+    color: var(--bb-primary-2);
   }
 </style>

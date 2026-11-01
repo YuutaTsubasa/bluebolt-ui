@@ -1,0 +1,192 @@
+/*
+ * Skin "azure": the yuuta-tsubasa.studio look. Silver-grey type on cool paper,
+ * electric blue #2563EB, cyan signal, frosted glass, fine line grid, soft glow
+ * instead of hard shadows, square edges. Orbitron / Chakra Petch / Noto Sans TC /
+ * JetBrains Mono (load fonts-azure.css, or styles.css which has everything).
+ *
+ * Use: <html data-skin="azure">, or data-skin="azure" on any element for a subtree.
+ * Lives in the later bb-skins layer, so it wins over the default skin whatever the
+ * selector specificity or import order.
+ */
+@layer bb-tokens, bb-skins;
+
+@layer bb-skins {
+  [data-skin="azure"] {
+    color-scheme: light;
+
+    /* ---- surfaces & text ---- */
+    --bb-paper: #f4f6fb;
+    --bb-page:
+      radial-gradient(1200px 700px at 80% -10%, rgb(37 99 235 / 0.1), transparent 60%),
+      radial-gradient(900px 600px at -10% 60%, rgb(8 145 178 / 0.06), transparent 60%),
+      linear-gradient(180deg, #fbfcfe 0%, #ecf0f8 100%);
+    --bb-surface: #ffffff;
+    --bb-ink: #0b1428;
+    --bb-ink-2: #475063;
+    --bb-ink-3: #5e6a86; /* site uses #6b7794; darkened a step for AA on paper */
+    --bb-ink-4: #b8c2d6;
+    --bb-line: rgb(30 58 138 / 0.16);
+    --bb-line-2: rgb(30 58 138 / 0.38);
+    --bb-black: #0b1428;
+    --bb-white: #ffffff;
+
+    /* ---- primary: electric blue ---- */
+    --bb-primary: #2563eb;
+    --bb-primary-shade: #1d4ed8;
+    --bb-primary-2: #3b82f6;
+    --bb-primary-soft: #dbe7fd;
+    --bb-primary-deep: #0f2d78;
+    --bb-primary-text: #1d4ed8;
+    --bb-on-primary: #ffffff;
+
+    /* ---- signal: cyan ---- */
+    --bb-signal: #22d3ee;
+    --bb-signal-soft: #cff7fd;
+    --bb-signal-deep: #0e7490;
+    --bb-on-signal: #0b1428;
+
+    --bb-accent: #60a5fa;
+
+    /* ---- dark panels & strips ---- */
+    --bb-panel-ink: #0b1428;
+    --bb-on-ink: #e6ecf8;
+    --bb-on-ink-2: #9aa8c4;
+    --bb-strip: #0f2d78;
+    --bb-on-strip: #ffffff;
+
+    /* ---- glass & HUD lines ---- */
+    --bb-glass: rgb(255 255 255 / 0.78);
+    --bb-glass-strong: rgb(255 255 255 / 0.9);
+    --bb-glass-edge: rgb(30 58 138 / 0.16);
+    --bb-glass-blur: 8px;
+    --bb-glass-rim: linear-gradient(135deg, rgb(37 99 235 / 0.55), rgb(255 255 255 / 0.3) 40%, rgb(37 99 235 / 0.12) 70%, rgb(8 145 178 / 0.45));
+    --bb-panel-shadow: 0 1px 0 rgb(255 255 255 / 0.9) inset, 0 6px 24px rgb(15 45 120 / 0.08);
+    --bb-hud-line: rgb(30 58 138 / 0.22);
+    --bb-hud-dot: rgb(30 58 138 / 0.12);
+    --bb-hud-dots: 0;
+    --bb-hud-grid: 1;
+    --bb-grid: rgb(30 58 138 / 0.07);
+    --bb-scrim: rgb(11 20 40 / 0.4);
+    --bb-scrim-primary: rgb(15 45 120 / 0.4);
+
+    /* ---- app layer faces: smooth, no facets ---- */
+    --bb-facets: linear-gradient(transparent, transparent);
+    --bb-face-primary: linear-gradient(135deg, #2563eb, #0f2d78);
+    --bb-face-gray: linear-gradient(135deg, #64748b, #3f4b63);
+    --bb-face-ink: linear-gradient(135deg, #1f2a44, #0b1428);
+    --bb-face-light: linear-gradient(135deg, rgb(255 255 255 / 0.95), rgb(234 238 246 / 0.9));
+    --bb-face-signal: linear-gradient(135deg, #67e8f9, #22d3ee);
+    --bb-face-accent: linear-gradient(135deg, #60a5fa, #2563eb);
+    --bb-face-band: linear-gradient(180deg, #2563eb, #1d4ed8 60%, #0f2d78);
+    --bb-face-header: linear-gradient(90deg, #0f2d78 0 40%, #1d4ed8 75%, #60a5fa);
+    --bb-gray: #64748b;
+    --bb-gray-shade: #566379;
+    --bb-navy: #0f2d78;
+    --bb-sys-panel: #f8fafe;
+    --bb-sys-panel-2: #eaeef6;
+    --bb-sys-dark: rgb(11 20 40 / 0.86);
+    --bb-sys-dark-edge: rgb(96 165 250 / 0.45);
+    --bb-sys-shadow: 0 0 0 1px rgb(37 99 235 / 0.22), 0 6px 18px rgb(15 45 120 / 0.16);
+
+    /* ---- type ---- */
+    --bb-font-body: "Noto Sans TC Variable", "Noto Sans TC", "Microsoft JhengHei UI", "PingFang TC", system-ui, sans-serif;
+    --bb-font-display: "Orbitron Display", "Orbitron", "Chakra Petch", var(--bb-font-body);
+    --bb-font-tech: "Chakra Petch", var(--bb-font-body);
+    --bb-font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
+    --bb-font-serif: var(--bb-font-body);
+    --bb-font-script: "Chakra Petch", var(--bb-font-body);
+    --bb-tech-style: normal;
+
+    /* metal colours for ChromeBackground (hex) */
+    --bb-chrome-lo: #8d9bb8;
+    --bb-chrome-hi: #ffffff;
+
+    /* ---- shape ---- */
+    --bb-radius: 2px;
+    --bb-skew: 0deg;
+    --bb-slant: 0;
+    --bb-hard: 0;
+    --bb-cut: 12px;
+    --bb-cut-lg: 14px;
+    --bb-stroke: 1px;
+    --bb-stroke-color: var(--bb-line-2);
+    --bb-shadow: 0 0 0 1px rgb(37 99 235 / 0.18), 0 12px 40px rgb(15 45 120 / 0.12);
+    --bb-glow: 0 0 24px rgb(37 99 235 / 0.22);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"])[data-skin="azure"],
+    :root:not([data-theme="light"]) [data-skin="azure"] {
+      color-scheme: dark;
+      --bb-paper: #050b1a;
+      --bb-page:
+        radial-gradient(1200px 700px at 80% -10%, rgb(37 99 235 / 0.22), transparent 60%),
+        radial-gradient(900px 600px at -10% 60%, rgb(8 145 178 / 0.12), transparent 60%),
+        linear-gradient(180deg, #071029 0%, #040815 100%);
+      --bb-surface: #0b1530;
+      --bb-ink: #e6ecf8;
+      --bb-ink-2: #b8c2d6;
+      --bb-ink-3: #8a96b2;
+      --bb-ink-4: #46506a;
+      --bb-line: rgb(148 180 255 / 0.16);
+      --bb-line-2: rgb(148 180 255 / 0.32);
+      --bb-primary-2: #60a5fa;
+      --bb-primary-soft: #0b2a6b;
+      --bb-primary-deep: #bfd5ff;
+      --bb-primary-text: #60a5fa;
+      --bb-signal-soft: #083344;
+      --bb-signal-deep: #67e8f9;
+      --bb-on-signal: #04121f;
+      --bb-panel-ink: #030712;
+      --bb-glass: rgb(11 21 48 / 0.62);
+      --bb-glass-strong: rgb(11 21 48 / 0.84);
+      --bb-glass-edge: rgb(96 165 250 / 0.28);
+      --bb-glass-rim: linear-gradient(135deg, rgb(96 165 250 / 0.6), rgb(255 255 255 / 0.08) 40%, rgb(96 165 250 / 0.1) 70%, rgb(34 211 238 / 0.45));
+      --bb-panel-shadow: 0 1px 0 rgb(148 180 255 / 0.12) inset, 0 10px 32px rgb(0 0 0 / 0.4);
+      --bb-hud-line: rgb(148 180 255 / 0.2);
+      --bb-hud-dot: rgb(148 180 255 / 0.12);
+      --bb-grid: rgb(96 165 250 / 0.08);
+      --bb-shadow: 0 0 0 1px rgb(96 165 250 / 0.25), 0 12px 40px rgb(0 0 0 / 0.45);
+      --bb-glow: 0 0 24px rgb(59 130 246 / 0.4);
+      --bb-chrome-lo: #050b1a;
+      --bb-chrome-hi: #8fb3ff;
+    }
+  }
+
+  :root[data-theme="dark"][data-skin="azure"],
+  :root[data-theme="dark"] [data-skin="azure"] {
+    color-scheme: dark;
+    --bb-paper: #050b1a;
+    --bb-page:
+      radial-gradient(1200px 700px at 80% -10%, rgb(37 99 235 / 0.22), transparent 60%),
+      radial-gradient(900px 600px at -10% 60%, rgb(8 145 178 / 0.12), transparent 60%),
+      linear-gradient(180deg, #071029 0%, #040815 100%);
+    --bb-surface: #0b1530;
+    --bb-ink: #e6ecf8;
+    --bb-ink-2: #b8c2d6;
+    --bb-ink-3: #8a96b2;
+    --bb-ink-4: #46506a;
+    --bb-line: rgb(148 180 255 / 0.16);
+    --bb-line-2: rgb(148 180 255 / 0.32);
+    --bb-primary-2: #60a5fa;
+    --bb-primary-soft: #0b2a6b;
+    --bb-primary-deep: #bfd5ff;
+    --bb-primary-text: #60a5fa;
+    --bb-signal-soft: #083344;
+    --bb-signal-deep: #67e8f9;
+    --bb-on-signal: #04121f;
+    --bb-panel-ink: #030712;
+    --bb-glass: rgb(11 21 48 / 0.62);
+    --bb-glass-strong: rgb(11 21 48 / 0.84);
+    --bb-glass-edge: rgb(96 165 250 / 0.28);
+    --bb-glass-rim: linear-gradient(135deg, rgb(96 165 250 / 0.6), rgb(255 255 255 / 0.08) 40%, rgb(96 165 250 / 0.1) 70%, rgb(34 211 238 / 0.45));
+    --bb-panel-shadow: 0 1px 0 rgb(148 180 255 / 0.12) inset, 0 10px 32px rgb(0 0 0 / 0.4);
+    --bb-hud-line: rgb(148 180 255 / 0.2);
+    --bb-hud-dot: rgb(148 180 255 / 0.12);
+    --bb-grid: rgb(96 165 250 / 0.08);
+    --bb-shadow: 0 0 0 1px rgb(96 165 250 / 0.25), 0 12px 40px rgb(0 0 0 / 0.45);
+    --bb-glow: 0 0 24px rgb(59 130 246 / 0.4);
+    --bb-chrome-lo: #050b1a;
+    --bb-chrome-hi: #8fb3ff;
+  }
+}

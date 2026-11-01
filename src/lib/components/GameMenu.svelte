@@ -130,11 +130,11 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: var(--bb-blue);
+    background: var(--bb-primary);
     transform: skewX(var(--bb-skew)) scaleX(0);
     transform-origin: left center;
     transition: transform var(--bb-dur-3) var(--bb-ease);
-    box-shadow: 6px 6px 0 var(--bb-panel-ink);
+    box-shadow: calc(6px * var(--bb-hard)) calc(6px * var(--bb-hard)) 0 var(--bb-panel-ink), var(--bb-glow);
   }
   .row.is-on .bar {
     transform: skewX(var(--bb-skew)) scaleX(1);
@@ -159,7 +159,7 @@
     font-size: var(--bb-text-lg);
   }
   .en {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 600;
     font-size: var(--bb-text-xs);
     letter-spacing: 0.2em;
@@ -172,18 +172,18 @@
     color: var(--bb-ink-3);
   }
   .arrow {
-    color: var(--bb-yellow);
+    color: var(--bb-signal);
     opacity: 0;
     transform: translateX(-8px);
     transition: opacity var(--bb-dur-2), transform var(--bb-dur-3) var(--bb-ease);
   }
 
   .row.is-on {
-    color: var(--bb-on-blue);
+    color: var(--bb-on-primary);
   }
   .row.is-on .no {
-    background: var(--bb-yellow);
-    color: var(--bb-on-yellow);
+    background: var(--bb-signal);
+    color: var(--bb-on-signal);
     transform: skewX(var(--bb-skew));
   }
   .row.is-on .txt {
@@ -203,7 +203,7 @@
     50% { transform: translateX(calc(4px * var(--bb-motion))); }
   }
   .row:focus-visible .bar {
-    outline: 3px solid var(--bb-yellow);
+    outline: 3px solid var(--bb-signal);
     outline-offset: 2px;
   }
   .row.is-off {

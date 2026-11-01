@@ -31,6 +31,17 @@ export function setTheme(theme) {
   else root.setAttribute('data-theme', theme);
 }
 
+/**
+ * Pick the skin for the whole page. "bluebolt" (the default) removes the attribute.
+ * For a single subtree, put data-skin="…" on that element instead.
+ * @param {'bluebolt' | 'azure' | string} skin
+ */
+export function setSkin(skin) {
+  const root = document.documentElement;
+  if (!skin || skin === 'bluebolt') root.removeAttribute('data-skin');
+  else root.setAttribute('data-skin', skin);
+}
+
 /** Split a string into grapheme-ish characters (keeps surrogate pairs together). */
 export function splitChars(text) {
   return Array.from(text ?? '');

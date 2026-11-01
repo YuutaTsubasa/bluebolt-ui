@@ -69,9 +69,10 @@ void main(){
 
   function cssColor(name) {
     const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-    const m = v.match(/^#([0-9a-f]{6})$/i);
+    const m = v.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
     if (!m) return [0, 0, 0];
-    const n = parseInt(m[1], 16);
+    const hex = m[1].length === 3 ? m[1].replace(/./g, '$&$&') : m[1];
+    const n = parseInt(hex, 16);
     return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
   }
 
@@ -116,9 +117,9 @@ void main(){
 
     function setColors() {
       gl.uniform3fv(u.paper, cssColor('--bb-paper'));
-      gl.uniform3fv(u.soft, cssColor('--bb-blue-soft'));
-      gl.uniform3fv(u.blue, cssColor('--bb-blue'));
-      gl.uniform3fv(u.yellow, cssColor('--bb-yellow'));
+      gl.uniform3fv(u.soft, cssColor('--bb-primary-soft'));
+      gl.uniform3fv(u.blue, cssColor('--bb-primary'));
+      gl.uniform3fv(u.yellow, cssColor('--bb-signal'));
     }
 
     let ptr = [0.5, 0.5];
@@ -192,7 +193,7 @@ void main(){
     });
     io.observe(canvas);
     const mo = new MutationObserver(refreshMode);
-    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-motion'] });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-motion', 'data-skin', 'class', 'style'] });
     const mqDark = matchMedia('(prefers-color-scheme: dark)');
     const mqMotion = matchMedia('(prefers-reduced-motion: reduce)');
     mqDark.addEventListener('change', refreshMode);
@@ -246,8 +247,8 @@ void main(){
   }
   .fallback {
     background:
-      radial-gradient(60% 80% at 75% 30%, var(--bb-blue-soft), transparent 70%),
-      radial-gradient(40% 50% at 20% 80%, color-mix(in srgb, var(--bb-blue) 35%, transparent), transparent 70%),
+      radial-gradient(60% 80% at 75% 30%, var(--bb-primary-soft), transparent 70%),
+      radial-gradient(40% 50% at 20% 80%, color-mix(in srgb, var(--bb-primary) 35%, transparent), transparent 70%),
       var(--bb-paper);
   }
 </style>

@@ -33,8 +33,8 @@
     font-weight: 900;
     font-size: var(--size);
     line-height: 1;
-    color: var(--bb-blue-deep);
-    text-shadow: 0.03em 0.03em 0 color-mix(in srgb, var(--bb-blue) 25%, transparent);
+    color: var(--bb-primary-deep);
+    text-shadow: 0.03em 0.03em 0 color-mix(in srgb, var(--bb-primary) 25%, transparent);
   }
   .ch {
     display: inline-block;
@@ -56,7 +56,7 @@
     flex-direction: column;
     align-items: flex-end;
     font-family: var(--bb-font-display);
-    color: var(--bb-blue-deep);
+    color: var(--bb-primary-deep);
     line-height: 1;
   }
   .cap b {

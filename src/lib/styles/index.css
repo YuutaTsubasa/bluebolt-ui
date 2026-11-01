@@ -1,4 +1,6 @@
-/* Everything: fonts + tokens + base. */
+/* Everything: fonts + tokens (all skins) + base. */
 @import "./fonts.css";
+@import "./fonts-azure.css";
 @import "./tokens.css";
+@import "./skins/azure.css";
 @import "./base.css";

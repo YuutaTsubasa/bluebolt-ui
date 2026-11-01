@@ -12,7 +12,7 @@
 html {
   background: var(--bb-paper);
   color: var(--bb-ink);
-  font-family: var(--bb-font-zh);
+  font-family: var(--bb-font-body);
   font-feature-settings: "palt" 1;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -20,19 +20,19 @@ html {
 
 body {
   margin: 0;
-  background: var(--bb-paper);
+  background: var(--bb-page);
   color: var(--bb-ink);
 }
 
 ::selection {
-  background: var(--bb-yellow);
-  color: var(--bb-on-yellow);
+  background: var(--bb-signal);
+  color: var(--bb-on-signal);
 }
 
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 3px solid var(--bb-ink);
   outline-offset: 3px;
-  box-shadow: 0 0 0 3px var(--bb-yellow);
+  box-shadow: 0 0 0 3px var(--bb-signal);
 }
 
 * {
@@ -41,7 +41,7 @@ body {
 
 /* ---------- type helpers ---------- */
 .bb-label {
-  font-family: var(--bb-font-cond);
+  font-family: var(--bb-font-tech);
   font-weight: 600;
   font-size: var(--bb-text-xs);
   letter-spacing: 0.14em;
@@ -66,33 +66,33 @@ body {
   display: inline-block;
   font-family: var(--bb-font-display);
   line-height: 0.85;
-  transform: skewX(-10deg);
+  transform: skewX(calc(-10deg * var(--bb-slant)));
   text-shadow:
-    0.04em 0.04em 0 var(--bb-surface),
-    0.07em 0.07em 0 var(--bb-ink);
+    calc(0.04em * var(--bb-hard)) calc(0.04em * var(--bb-hard)) 0 var(--bb-surface),
+    calc(0.07em * var(--bb-hard)) calc(0.07em * var(--bb-hard)) 0 var(--bb-ink);
 }
 
 /* inline emphasis inside descriptions: blue keywords, yellow numbers / conditions */
 .bb-hl {
-  color: var(--bb-blue-text);
+  color: var(--bb-primary-text);
   font-weight: 700;
 }
 .bb-hl-y {
-  color: var(--bb-yellow-deep);
+  color: var(--bb-signal-deep);
   font-weight: 700;
 }
 :where(.bb-on-dark) .bb-hl {
-  color: var(--bb-sky);
+  color: var(--bb-accent);
 }
 :where(.bb-on-dark) .bb-hl-y {
-  color: var(--bb-yellow);
+  color: var(--bb-signal);
 }
 
 /* small handwritten accent */
 .bb-script {
   font-family: var(--bb-font-script);
   font-weight: 400;
-  color: var(--bb-blue-text);
+  color: var(--bb-primary-text);
 }
 
 .bb-sr-only {
@@ -108,7 +108,7 @@ body {
 .bb-hazard {
   background: repeating-linear-gradient(
     -45deg,
-    var(--bb-yellow) 0 10px,
+    var(--bb-signal) 0 10px,
     var(--bb-panel-ink) 10px 20px
   );
 }
@@ -194,7 +194,7 @@ body {
   bottom: 0;
   left: 0;
   width: 3px;
-  background: var(--bb-yellow);
+  background: var(--bb-signal);
   z-index: 2;
   pointer-events: none;
   opacity: var(--bb-motion);

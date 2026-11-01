@@ -83,7 +83,7 @@
     padding: 4px;
     gap: 2px;
     background: var(--bb-surface);
-    border: 2px solid var(--bb-ink);
+    border: var(--bb-stroke) solid var(--bb-stroke-color);
     isolation: isolate;
   }
   .ind {
@@ -92,8 +92,8 @@
     bottom: 4px;
     left: 0;
     z-index: -1;
-    background: var(--bb-blue);
-    box-shadow: 3px 3px 0 var(--bb-yellow);
+    background: var(--bb-primary);
+    box-shadow: calc(3px * var(--bb-hard)) calc(3px * var(--bb-hard)) 0 var(--bb-signal), var(--bb-glow);
     opacity: 0;
   }
   .ind.ready {
@@ -120,10 +120,10 @@
     color: var(--bb-ink);
   }
   button.on {
-    color: var(--bb-on-blue);
+    color: var(--bb-on-primary);
   }
   .en {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 600;
     font-size: 0.65em;
     letter-spacing: 0.18em;

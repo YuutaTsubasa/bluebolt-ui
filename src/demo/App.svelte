@@ -16,6 +16,7 @@
     toast,
     setTheme,
     setMotion,
+    setSkin,
   } from 'bluebolt-ui';
   import { ChromeBackground, surge } from 'bluebolt-ui/fx';
   import Gallery from './Gallery.svelte';
@@ -36,10 +37,17 @@
   const isOverview = $derived(screen === 'overview');
   const isApp = $derived(screen === 'roster' || screen === 'system');
 
-  let theme = $state('auto');
-  let motion = $state('auto');
+  const params = new URLSearchParams(location.search);
+  let theme = $state(params.get('theme') ?? 'auto');
+  let motion = $state(params.get('motion') ?? 'auto');
+  // "fusion" = azure plus bluebolt's yellow signal and slanted edges (see fusion.css)
+  let skin = $state(params.get('skin') ?? 'bluebolt');
   $effect(() => setTheme(theme));
   $effect(() => setMotion(motion));
+  $effect(() => {
+    setSkin(skin === 'fusion' ? 'azure' : skin);
+    document.documentElement.classList.toggle('demo-fusion', skin === 'fusion');
+  });
 
   const lanes = [
     { code: 'S01', title: '開場', en: 'Opening', note: '倒數＋BGM', count: 12, load: 0.3, value: '0:45', active: true },
@@ -242,6 +250,17 @@
     
     <Segmented
       size="sm"
+      label="樣式"
+      bind:value={skin}
+      options={[
+        { value: 'bluebolt', label: 'bluebolt' },
+        { value: 'azure', label: 'azure' },
+        { value: 'fusion', label: '融合' },
+      ]}
+    />
+    <a class="skins-link" href="./skins.html">skins ▸</a>
+    <Segmented
+      size="sm"
       label="主題"
       bind:value={theme}
       options={[
@@ -284,6 +303,12 @@
     font-size: 10px;
     padding: 1px 8px;
   }
+  .skins-link {
+    font-size: 10px;
+    color: var(--bb-primary-text);
+    text-decoration: none;
+    white-space: nowrap;
+  }
 
   /* ---------- nav ---------- */
   .nav {
@@ -306,9 +331,9 @@
   .bolt {
     width: 14px;
     height: 20px;
-    background: var(--bb-yellow);
+    background: var(--bb-signal);
     clip-path: polygon(55% 0, 0 58%, 42% 58%, 30% 100%, 100% 36%, 56% 36%, 75% 0);
-    filter: drop-shadow(1.5px 1.5px 0 var(--bb-blue));
+    filter: drop-shadow(1.5px 1.5px 0 var(--bb-primary));
   }
   .yr {
     font: italic 400 1.2rem var(--bb-font-display);
@@ -321,7 +346,7 @@
     letter-spacing: -0.01em;
   }
   .sub {
-    font: 700 8px/1 var(--bb-font-cond);
+    font: 700 8px/1 var(--bb-font-tech);
     letter-spacing: 0.1em;
     color: var(--bb-ink-2);
   }
@@ -330,7 +355,7 @@
     padding: 1px 8px;
     background: var(--bb-strip);
     color: var(--bb-on-strip);
-    font: 700 italic 10px var(--bb-font-cond);
+    font: 700 italic 10px var(--bb-font-tech);
     letter-spacing: 0.1em;
     transform: skewX(-12deg);
   }
@@ -340,7 +365,7 @@
     gap: 6px;
     padding-top: 6px;
     border-top: 1px solid var(--bb-hud-line);
-    font: 700 11px var(--bb-font-cond);
+    font: 700 11px var(--bb-font-tech);
     letter-spacing: 0.1em;
   }
   .nav-foot .t {
@@ -407,10 +432,10 @@
     padding: 1px 6px;
     background: var(--bb-strip);
     color: var(--bb-on-strip);
-    font: 700 10px var(--bb-font-zh);
+    font: 700 10px var(--bb-font-body);
   }
   .cs {
-    font: 600 9px/1.3 var(--bb-font-cond);
+    font: 600 9px/1.3 var(--bb-font-tech);
     letter-spacing: 0.1em;
     color: var(--bb-ink-2);
   }
@@ -448,7 +473,7 @@
     line-height: 1;
   }
   small {
-    font: 700 9px var(--bb-font-cond);
+    font: 700 9px var(--bb-font-tech);
     letter-spacing: 0.12em;
     color: var(--bb-ink-3);
   }
@@ -456,7 +481,7 @@
     font: italic 400 2.1rem var(--bb-font-display);
   }
   .kpis b.y {
-    color: var(--bb-blue-text);
+    color: var(--bb-primary-text);
   }
   .lat {
     display: grid;
@@ -501,7 +526,7 @@
     box-shadow: inset 0 0 0 1px var(--bb-ink);
   }
   .chat li:first-child b {
-    background: var(--bb-blue);
+    background: var(--bb-primary);
   }
   .ev {
     width: 100%;
@@ -521,8 +546,8 @@
     font: italic 400 14px var(--bb-font-display);
   }
   .ev tr.hl td {
-    background: var(--bb-blue);
-    color: var(--bb-on-blue);
+    background: var(--bb-primary);
+    color: var(--bb-on-primary);
   }
 
   .lanes {
@@ -544,7 +569,7 @@
   }
   .status > :global(.bb-panel) {
     height: 100%;
-    --bb-glass: color-mix(in srgb, var(--bb-blue-soft) 70%, transparent);
+    --bb-glass: color-mix(in srgb, var(--bb-primary-soft) 70%, transparent);
   }
   .st {
     display: flex;
@@ -579,7 +604,7 @@
     font-size: 11px;
   }
   dt {
-    font: 700 9px var(--bb-font-cond);
+    font: 700 9px var(--bb-font-tech);
     letter-spacing: 0.14em;
     align-self: center;
   }
@@ -643,12 +668,12 @@
   }
   .stop:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 7px 7px 0 var(--bb-blue);
+    box-shadow: 7px 7px 0 var(--bb-primary);
   }
   .stop .sq {
     width: 26px;
     height: 26px;
-    background: var(--bb-yellow);
+    background: var(--bb-signal);
     box-shadow: inset 0 0 0 2px var(--bb-ink);
   }
   .stop b {
@@ -685,7 +710,7 @@
     width: min(26vw, 360px);
   }
   .dots dt {
-    font: 700 12px var(--bb-font-zh);
+    font: 700 12px var(--bb-font-body);
     letter-spacing: 0;
   }
   .proc {
@@ -698,14 +723,14 @@
   .proc li {
     padding: 2px 8px;
     border: 1.5px solid var(--bb-ink);
-    font: 700 italic 10px var(--bb-font-cond);
+    font: 700 italic 10px var(--bb-font-tech);
     letter-spacing: 0.08em;
     transform: skewX(-10deg);
   }
   .proc li.on {
-    background: var(--bb-blue);
-    color: var(--bb-on-blue);
-    border-color: var(--bb-blue);
+    background: var(--bb-primary);
+    color: var(--bb-on-primary);
+    border-color: var(--bb-primary);
   }
   .steps {
     display: grid;
@@ -732,7 +757,7 @@
     gap: 4px;
   }
   .hist span {
-    color: var(--bb-yellow);
+    color: var(--bb-signal);
     margin-right: 8px;
   }
   /* the settings screen takes over the whole stage; number keys still switch back */

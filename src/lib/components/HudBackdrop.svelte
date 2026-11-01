@@ -3,12 +3,13 @@
   edge coordinate letters and an optional vertical ruler. Purely decorative.
 -->
 <script>
-  /** @type {{ fixed?: boolean, dots?: boolean, crosses?: boolean, coords?: boolean, rulerX?: string | null, label?: string }} */
-  let { fixed = true, dots = true, crosses = true, coords = true, rulerX = '62%', label = '' } = $props();
+  /** @type {{ fixed?: boolean, dots?: boolean, grid?: boolean, crosses?: boolean, coords?: boolean, rulerX?: string | null, label?: string }} */
+  let { fixed = true, dots = true, grid = true, crosses = true, coords = true, rulerX = '62%', label = '' } = $props();
 </script>
 
 <div class="bb-hud-backdrop" class:fixed aria-hidden="true">
   {#if dots}<div class="dots"></div>{/if}
+  {#if grid}<div class="grid"></div>{/if}
   {#if crosses}<div class="crosses"></div>{/if}
   {#if coords}
     <span class="co" style="left:26%;top:12px">A</span>
@@ -41,6 +42,18 @@
     background-image: radial-gradient(var(--bb-hud-dot) 1px, transparent 1.2px);
     background-size: 16px 16px;
     mask-image: linear-gradient(90deg, #000, rgb(0 0 0 / 0.5) 40%, #000);
+    opacity: var(--bb-hud-dots);
+  }
+  /* line grid; the skin decides how much of dots vs grid shows */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--bb-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bb-grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+    opacity: var(--bb-hud-grid);
   }
   .crosses {
     position: absolute;
@@ -54,7 +67,7 @@
   }
   .co {
     position: absolute;
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-size: 11px;
     color: var(--bb-ink-3);
   }
@@ -85,7 +98,7 @@
     top: 6%;
     left: -14px;
     writing-mode: vertical-rl;
-    font: 600 10px var(--bb-font-cond);
+    font: 600 10px var(--bb-font-tech);
     letter-spacing: 0.3em;
     color: var(--bb-ink-3);
   }

@@ -6,4 +6,9 @@ export default defineConfig({
   plugins: [svelte()],
   base: './',
   server: { port: 5178 },
+  build: {
+    rollupOptions: {
+      input: { main: 'index.html', skins: 'skins.html' },
+    },
+  },
 });

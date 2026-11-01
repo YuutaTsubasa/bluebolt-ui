@@ -87,7 +87,7 @@
     border: 0;
     background: var(--bb-face-light);
     box-shadow: inset 0 0 0 1.5px #0e0f15, var(--bb-sys-shadow);
-    color: #0b0f1a;
+    color: var(--bb-black);
     font: inherit;
     font-size: var(--bb-text-md);
     font-weight: 800;
@@ -110,9 +110,9 @@
     transform: translateY(calc(-1px * var(--bb-motion)));
   }
   button.on {
-    background: var(--bb-face-blue);
+    background: var(--bb-face-primary);
     box-shadow: var(--bb-sys-shadow);
-    color: #ffffff;
+    color: var(--bb-white);
   }
   .ic {
     font-size: 0.95em;

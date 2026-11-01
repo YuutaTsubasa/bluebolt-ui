@@ -42,7 +42,7 @@
     align-items: baseline;
     font-family: var(--bb-font-display);
     line-height: 0.9;
-    transform: skewX(-8deg);
+    transform: skewX(calc(-8deg * var(--bb-slant)));
   }
   .y {
     font-size: 1.9rem;
@@ -53,15 +53,15 @@
   .sl {
     margin: 0 2px;
     font-size: 2.4rem;
-    color: var(--bb-blue-text);
+    color: var(--bb-primary-text);
   }
   .dow {
     align-self: flex-start;
     margin-left: 6px;
     padding: 1px 6px;
     background: var(--bb-strip);
-    color: var(--bb-yellow);
-    font: 700 italic 13px var(--bb-font-cond);
+    color: var(--bb-signal);
+    font: 700 italic 13px var(--bb-font-tech);
   }
   .time {
     color: var(--bb-ink-3);
@@ -76,7 +76,7 @@
     font-size: 11px;
   }
   .stats b {
-    font: 700 10px var(--bb-font-cond);
+    font: 700 10px var(--bb-font-tech);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }

@@ -68,7 +68,7 @@
     min-width: 0;
     overflow: hidden;
     white-space: nowrap;
-    border-left: 2px solid var(--bb-ink);
+    border-left: var(--bb-stroke) solid var(--bb-stroke-color);
     padding-left: 10px;
     mask-image: linear-gradient(90deg, #000 85%, transparent);
   }

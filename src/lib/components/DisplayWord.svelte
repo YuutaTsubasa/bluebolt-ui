@@ -59,10 +59,10 @@
     right: -0.1em;
     top: 0.1em;
     writing-mode: vertical-rl;
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 700;
     font-size: 0.12em;
     letter-spacing: 0.3em;
-    color: var(--bb-blue-text);
+    color: var(--bb-primary-text);
   }
 </style>

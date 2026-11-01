@@ -1,0 +1,35 @@
+/*
+ * Fusion example: the azure skin with bluebolt's yellow/black signal, hazard
+ * stripes and slanted edges mixed back in. Nothing here touches a component;
+ * it only re-fills semantic tokens, which is all an app needs to do to mix skins.
+ * Unlayered, so it wins over both skin layers.
+ */
+:root.demo-fusion,
+.demo-fusion {
+  --bb-signal: #ffd21f;
+  --bb-signal-soft: #fff1a8;
+  --bb-signal-deep: #7a5c00;
+  --bb-on-signal: #0b0f1a;
+  --bb-face-signal: linear-gradient(180deg, #ffe066, #ffc800);
+  --bb-black: #0b0f1a;
+  --bb-strip: #0b0f1a;
+  --bb-skew: -12deg;
+  --bb-slant: 1;
+  --bb-hard: 1;
+}
+:root.demo-fusion[data-theme="dark"],
+:root[data-theme="dark"] .demo-fusion {
+  --bb-signal: #ffd84a;
+  --bb-signal-soft: #4a3d05;
+  --bb-signal-deep: #ffe58a;
+  --bb-strip: #000000;
+}
+@media (prefers-color-scheme: dark) {
+  :root.demo-fusion:not([data-theme="light"]),
+  :root:not([data-theme="light"]) .demo-fusion {
+    --bb-signal: #ffd84a;
+    --bb-signal-soft: #4a3d05;
+    --bb-signal-deep: #ffe58a;
+    --bb-strip: #000000;
+  }
+}

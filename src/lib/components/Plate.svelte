@@ -56,8 +56,8 @@
     --_bg: var(--bb-surface);
     --_fg: var(--bb-ink);
     --_muted: var(--bb-ink-3);
-    --_accent: var(--bb-blue-text);
-    --bb-bracket-color: var(--bb-blue);
+    --_accent: var(--bb-primary-text);
+    --bb-bracket-color: var(--bb-primary);
     position: relative;
     height: 100%;
     box-sizing: border-box;
@@ -65,33 +65,33 @@
     background: var(--_bg);
     color: var(--_fg);
     clip-path: polygon(0 0, calc(100% - var(--bb-cut)) 0, 100% var(--bb-cut), 100% 100%, 0 100%);
-    border-left: 4px solid var(--bb-blue);
+    border-left: 4px solid var(--bb-primary);
   }
   .t-blue {
-    --_bg: var(--bb-blue);
-    --_fg: var(--bb-on-blue);
+    --_bg: var(--bb-primary);
+    --_fg: var(--bb-on-primary);
     --_muted: rgb(255 255 255 / 0.78);
-    --_accent: var(--bb-yellow);
-    --bb-bracket-color: var(--bb-yellow);
-    border-left-color: var(--bb-yellow);
+    --_accent: var(--bb-signal);
+    --bb-bracket-color: var(--bb-signal);
+    border-left-color: var(--bb-signal);
   }
   .t-soft {
-    --_bg: var(--bb-blue-soft);
+    --_bg: var(--bb-primary-soft);
     --_muted: var(--bb-ink-2);
   }
   .t-ink {
     --_bg: var(--bb-panel-ink);
     --_fg: var(--bb-on-ink);
     --_muted: var(--bb-on-ink-2);
-    --_accent: var(--bb-yellow);
-    --bb-bracket-color: var(--bb-yellow);
-    border-left-color: var(--bb-yellow);
+    --_accent: var(--bb-signal);
+    --bb-bracket-color: var(--bb-signal);
+    border-left-color: var(--bb-signal);
   }
   .t-yellow {
-    --_bg: var(--bb-yellow);
-    --_fg: var(--bb-on-yellow);
+    --_bg: var(--bb-signal);
+    --_fg: var(--bb-on-signal);
     --_muted: rgb(11 15 26 / 0.7);
-    --_accent: var(--bb-on-yellow);
+    --_accent: var(--bb-on-signal);
     --bb-bracket-color: var(--bb-panel-ink);
     border-left-color: var(--bb-panel-ink);
   }
@@ -110,7 +110,7 @@
     flex-direction: column;
   }
   .en {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 700;
     font-size: var(--bb-text-xs);
     letter-spacing: 0.2em;

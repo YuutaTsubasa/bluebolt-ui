@@ -64,7 +64,7 @@
     font-size: var(--bb-text-sm);
   }
   .en {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 600;
     font-size: var(--bb-text-xs);
     letter-spacing: 0.18em;
@@ -92,10 +92,10 @@
     transition-delay: calc(var(--i) * 18ms * var(--bb-motion));
   }
   .seg.on {
-    background: var(--bb-blue);
+    background: var(--bb-primary);
   }
   .seg.warn {
-    background: var(--bb-yellow);
+    background: var(--bb-signal);
     box-shadow: inset 0 -3px 0 var(--bb-panel-ink);
   }
 </style>

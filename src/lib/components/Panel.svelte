@@ -1,14 +1,16 @@
 <!--
   Frosted-glass HUD panel with an iridescent edge, a black slanted header strip
-  carrying a yellow number badge, and an optional link on the right. Enters with
+  carrying a yellow number badge, and an optional link on the right; `corners`
+  adds L-shaped corner marks. Enters with
   a tilted fly-in (staggered via `delay`); `tilt` gives it a slight 3D lean.
 -->
 <script>
+  import Corners from './Corners.svelte';
   /**
    * @type {{
    *   num?: string, title?: string, sub?: string, link?: string, onlink?: () => void,
    *   tone?: 'glass' | 'ink' | 'blue', tilt?: 'left' | 'right' | 'none',
-   *   from?: 'left' | 'right' | 'up' | 'down', delay?: number, cut?: boolean, pad?: boolean,
+   *   from?: 'left' | 'right' | 'up' | 'down', delay?: number, cut?: boolean, pad?: boolean, corners?: boolean,
    *   class?: string, style?: string, children?: import('svelte').Snippet
    * }}
    */
@@ -24,6 +26,7 @@
     delay = 0,
     cut = true,
     pad = true,
+    corners = false,
     class: cls = '',
     style = '',
     children,
@@ -45,6 +48,7 @@
       {/if}
     </header>
   {/if}
+  {#if corners}<Corners inset={4} />{/if}
   <div class="body" class:pad>
     {@render children?.()}
   </div>
@@ -60,11 +64,11 @@
     min-width: 0;
     color: var(--_fg);
     background: var(--_bg);
-    backdrop-filter: blur(14px) saturate(1.5);
-    -webkit-backdrop-filter: blur(14px) saturate(1.5);
+    backdrop-filter: blur(var(--bb-glass-blur)) saturate(1.5);
+    -webkit-backdrop-filter: blur(var(--bb-glass-blur)) saturate(1.5);
     box-shadow:
       inset 0 0 0 1px var(--bb-glass-edge),
-      0 18px 40px -18px rgb(11 15 26 / 0.45);
+      var(--bb-panel-shadow);
     animation: bb-panel-in var(--bb-t-enter) var(--bb-ease) both;
     animation-delay: calc(var(--bb-delay) * var(--bb-motion));
     --_tx: 60px;
@@ -77,14 +81,7 @@
     position: absolute;
     inset: 0;
     padding: 1.5px;
-    background: linear-gradient(
-      125deg,
-      rgb(255 255 255 / 0.9),
-      color-mix(in srgb, var(--bb-blue) 55%, transparent) 30%,
-      rgb(255 255 255 / 0.4) 50%,
-      color-mix(in srgb, var(--bb-yellow) 60%, transparent) 75%,
-      rgb(255 255 255 / 0.9)
-    );
+    background: var(--bb-glass-rim);
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
@@ -94,7 +91,7 @@
     opacity: 0.8;
   }
   .cut {
-    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    clip-path: polygon(0 0, calc(100% - var(--bb-cut-lg)) 0, 100% var(--bb-cut-lg), 100% 100%, var(--bb-cut-lg) 100%, 0 calc(100% - var(--bb-cut-lg)));
   }
   .from-left { --_tx: -60px; --_ry: 18deg; }
   .from-up { --_tx: 0px; --_ty: -40px; --_ry: 0deg; }
@@ -120,8 +117,8 @@
     --_fg: var(--bb-on-ink);
   }
   .t-blue {
-    --_bg: color-mix(in srgb, var(--bb-blue) 82%, transparent);
-    --_fg: var(--bb-on-blue);
+    --_bg: color-mix(in srgb, var(--bb-primary) 82%, transparent);
+    --_fg: var(--bb-on-primary);
   }
 
   header {
@@ -134,7 +131,7 @@
     min-height: 26px;
     background: var(--bb-strip);
     color: var(--bb-on-strip);
-    clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 10px * var(--bb-slant)) 100%, 0 100%);
   }
   .num {
     display: grid;
@@ -142,11 +139,11 @@
     align-self: stretch;
     min-width: 30px;
     padding: 0 6px;
-    background: var(--bb-yellow);
-    color: var(--bb-on-yellow);
+    background: var(--bb-signal);
+    color: var(--bb-on-signal);
     font-family: var(--bb-font-display);
     font-size: 15px;
-    clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 6px * var(--bb-slant)) 100%, 0 100%);
   }
   h3 {
     flex: 1;
@@ -160,9 +157,9 @@
     overflow: hidden;
   }
   .t {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 700;
-    font-style: italic;
+    font-style: var(--bb-tech-style);
     font-size: 15px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -176,16 +173,16 @@
     border: 0;
     background: none;
     color: inherit;
-    font: 700 12px var(--bb-font-zh);
+    font: 700 12px var(--bb-font-body);
     cursor: pointer;
     white-space: nowrap;
   }
   .link span {
-    color: var(--bb-yellow);
+    color: var(--bb-signal);
     font-size: 10px;
   }
   .link:hover {
-    color: var(--bb-yellow);
+    color: var(--bb-signal);
   }
   .body {
     position: relative;

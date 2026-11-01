@@ -40,6 +40,15 @@ export { default as Tag } from './components/Tag.svelte';
 export { default as UnitCard } from './components/UnitCard.svelte';
 export { default as StatList } from './components/StatList.svelte';
 
+// Site layer (from the azure look, usable under every skin)
+export { default as Corners } from './components/Corners.svelte';
+export { default as HexAvatar } from './components/HexAvatar.svelte';
+export { default as ScanBar } from './components/ScanBar.svelte';
+export { default as Tele } from './components/Tele.svelte';
+export { default as VLabel } from './components/VLabel.svelte';
+export { default as LogRow } from './components/LogRow.svelte';
+export { default as SectionHead } from './components/SectionHead.svelte';
+
 // Motion & input
-export { wipe, sheen, ripple, inView, reducedMotion, setMotion, setTheme, splitChars } from './motion/index.js';
+export { wipe, sheen, ripple, inView, reducedMotion, setMotion, setTheme, setSkin, splitChars } from './motion/index.js';
 export { onGamepadIntent } from './input/gamepad.js';
