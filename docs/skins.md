@@ -103,7 +103,7 @@ v0.3 以前的名稱都保留成別名，讀它們的 app 在任何 skin 下都�
 | `--bb-hud-line`、`--bb-hud-dot`、`--bb-grid`、`--bb-hud-dots`、`--bb-hud-grid` | HUD 線、點格與線格；後兩個是 `HudBackdrop` 點格／線格的不透明度 |
 | `--bb-scrim`、`--bb-scrim-primary` | 對話框後面的遮罩 |
 | `--bb-facets`、`--bb-face-*`、`--bb-gray`、`--bb-gray-shade`、`--bb-navy`、`--bb-sys-*` | 應用層（對話框、設定、按鈕）的面 |
-| `--bb-chrome-lo`、`--bb-chrome-hi` | （可選，hex）`ChromeBackground` 的金屬暗面與亮面；不設就用原本的黑銀 |
+| `--bb-chrome-lo`、`--bb-chrome-hi` | `ChromeBackground` 的金屬暗面與亮面（hex）；bluebolt 設 `none`＝用 shader 原本的黑銀 |
 
 **字型**
 

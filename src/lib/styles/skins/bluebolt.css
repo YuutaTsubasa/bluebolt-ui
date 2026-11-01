@@ -118,6 +118,9 @@
     --bb-shadow: 6px 6px 0 var(--bb-ink);
     --bb-glow: 0 0 0 0 transparent; /* soft glow added to raised elements */
     --bb-plate-sheen: linear-gradient(transparent, transparent); /* overlay on solid plates and strips */
+    /* ChromeBackground metal: "none" keeps the shader's own black/silver; skins may set hex */
+    --bb-chrome-lo: none;
+    --bb-chrome-hi: none;
   }
 
   @media (prefers-color-scheme: dark) {
