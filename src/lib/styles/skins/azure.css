@@ -112,6 +112,7 @@
     --bb-stroke-color: var(--bb-line-2);
     --bb-shadow: 0 0 0 1px rgb(37 99 235 / 0.18), 0 12px 40px rgb(15 45 120 / 0.12);
     --bb-glow: 0 0 24px rgb(37 99 235 / 0.22);
+    --bb-plate-sheen: linear-gradient(transparent, transparent);
   }
 
   @media (prefers-color-scheme: dark) {

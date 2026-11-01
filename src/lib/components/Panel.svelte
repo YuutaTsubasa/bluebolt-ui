@@ -129,7 +129,7 @@
     margin: 10px 10px 0 0;
     padding-right: 12px;
     min-height: 26px;
-    background: var(--bb-strip);
+    background: var(--bb-plate-sheen), var(--bb-strip);
     color: var(--bb-on-strip);
     clip-path: polygon(0 0, 100% 0, calc(100% - 10px * var(--bb-slant)) 100%, 0 100%);
   }

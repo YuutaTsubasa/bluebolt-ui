@@ -119,12 +119,12 @@ void main(){
       scale: () => scale,
       interactive: () => interactive,
       onTheme(gl, u) {
-        gl.uniform3fv(u.uPaper, cssColor('--bb-paper'));
-        gl.uniform3fv(u.uBlue, cssColor('--bb-primary'));
-        gl.uniform3fv(u.uYellow, cssColor('--bb-signal'));
+        gl.uniform3fv(u.uPaper, cssColor('--bb-paper', undefined, canvas));
+        gl.uniform3fv(u.uBlue, cssColor('--bb-primary', undefined, canvas));
+        gl.uniform3fv(u.uYellow, cssColor('--bb-signal', undefined, canvas));
         gl.uniform1f(u.uDark, isDark() ? 1 : 0);
-        const lo = cssColor('--bb-chrome-lo', null);
-        const hi = cssColor('--bb-chrome-hi', null);
+        const lo = cssColor('--bb-chrome-lo', null, canvas);
+        const hi = cssColor('--bb-chrome-hi', null, canvas);
         gl.uniform1f(u.uSkinMetal, lo && hi ? 1 : 0);
         gl.uniform3fv(u.uLo, lo ?? [0, 0, 0]);
         gl.uniform3fv(u.uHi, hi ?? [0, 0, 0]);

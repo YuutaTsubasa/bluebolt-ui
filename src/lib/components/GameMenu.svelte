@@ -130,7 +130,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: var(--bb-primary);
+    background: var(--bb-plate-sheen), var(--bb-primary);
     transform: skewX(var(--bb-skew)) scaleX(0);
     transform-origin: left center;
     transition: transform var(--bb-dur-3) var(--bb-ease);

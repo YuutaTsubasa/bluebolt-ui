@@ -34,7 +34,7 @@ export function setTheme(theme) {
 /**
  * Pick the skin for the whole page. "bluebolt" (the default) removes the attribute.
  * For a single subtree, put data-skin="…" on that element instead.
- * @param {'bluebolt' | 'azure' | string} skin
+ * @param {'bluebolt' | 'hud' | 'app' | 'azure' | string} skin
  */
 export function setSkin(skin) {
   const root = document.documentElement;

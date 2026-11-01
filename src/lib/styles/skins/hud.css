@@ -1,0 +1,32 @@
+/*
+ * Skin "hud": style 1, after the html-in-canvas stream console (v0.2).
+ * The whole kit in the HUD look: flat solid plates, hard offset shadows, black
+ * strips. Only the app-layer tokens change here, so dialogs, settings and the
+ * rect buttons lose their faceted gradients and soft shadows.
+ *
+ * Builds on the bluebolt base ([data-skin="hud"] is in its selector list), so this
+ * file only overrides. Use: data-skin="hud" on <html> or any element.
+ */
+@layer bb-tokens, bb-skins;
+
+@layer bb-skins {
+  [data-skin="hud"] {
+    --bb-facets: linear-gradient(transparent, transparent);
+    --bb-face-primary: linear-gradient(var(--bb-primary), var(--bb-primary));
+    --bb-face-gray: linear-gradient(var(--bb-panel-ink), var(--bb-panel-ink));
+    --bb-face-ink: linear-gradient(var(--bb-panel-ink), var(--bb-panel-ink));
+    --bb-face-light: linear-gradient(var(--bb-surface), var(--bb-surface));
+    --bb-face-signal: linear-gradient(var(--bb-signal), var(--bb-signal));
+    --bb-face-accent: linear-gradient(var(--bb-primary), var(--bb-primary));
+    --bb-face-band: linear-gradient(var(--bb-primary), var(--bb-primary));
+    --bb-face-header: linear-gradient(var(--bb-strip), var(--bb-strip));
+    --bb-gray: var(--bb-panel-ink);
+    --bb-gray-shade: var(--bb-black);
+    --bb-navy: var(--bb-strip);
+    --bb-sys-panel: var(--bb-surface);
+    --bb-sys-panel-2: var(--bb-primary-soft);
+    --bb-sys-dark: color-mix(in srgb, var(--bb-panel-ink) 92%, transparent);
+    --bb-sys-dark-edge: var(--bb-signal);
+    --bb-sys-shadow: 4px 4px 0 var(--bb-panel-ink);
+  }
+}

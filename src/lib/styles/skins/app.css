@@ -1,0 +1,46 @@
+/*
+ * Skin "app": style 2, after mobile-game menus and dialogs (v0.3 app layer).
+ * The whole kit in the app look: faceted gradient faces, soft drop shadows instead
+ * of hard offsets, navy header strips, light opaque panels without the iridescent
+ * rim, upright panel titles. Only HUD-layer tokens change here.
+ *
+ * Builds on the bluebolt base ([data-skin="app"] is in its selector list), so this
+ * file only overrides. Use: data-skin="app" on <html> or any element.
+ */
+@layer bb-tokens, bb-skins;
+
+@layer bb-skins {
+  [data-skin="app"] {
+    --bb-plate-sheen: var(--bb-facets);
+    --bb-hard: 0;
+    --bb-glow: 0 3px 6px rgb(0 0 0 / 0.32);
+    --bb-shadow: 0 8px 20px rgb(0 0 0 / 0.28);
+    --bb-strip: var(--bb-navy);
+    --bb-glass: rgb(246 247 251 / 0.92);
+    --bb-glass-strong: rgb(246 247 251 / 0.97);
+    --bb-glass-edge: rgb(255 255 255 / 0.9);
+    --bb-glass-rim: linear-gradient(180deg, rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.15));
+    --bb-panel-shadow: 0 3px 6px rgb(0 0 0 / 0.32);
+    --bb-tech-style: normal;
+    --bb-cut-lg: 0px;
+    --bb-stroke: 1.5px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"])[data-skin="app"],
+    :root:not([data-theme="light"]) [data-skin="app"] {
+      --bb-glass: rgb(16 20 28 / 0.84);
+      --bb-glass-strong: rgb(16 20 28 / 0.92);
+      --bb-glass-edge: rgb(255 255 255 / 0.5);
+      --bb-glass-rim: linear-gradient(180deg, rgb(255 255 255 / 0.5), rgb(255 255 255 / 0.05));
+    }
+  }
+
+  :root[data-theme="dark"][data-skin="app"],
+  :root[data-theme="dark"] [data-skin="app"] {
+    --bb-glass: rgb(16 20 28 / 0.84);
+    --bb-glass-strong: rgb(16 20 28 / 0.92);
+    --bb-glass-edge: rgb(255 255 255 / 0.5);
+    --bb-glass-rim: linear-gradient(180deg, rgb(255 255 255 / 0.5), rgb(255 255 255 / 0.05));
+  }
+}

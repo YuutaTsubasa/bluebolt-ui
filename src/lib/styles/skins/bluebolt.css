@@ -1,15 +1,21 @@
 /*
- * Skin "bluebolt" (default): blue / white / yellow / black game HUD.
- * Hard offset shadows, slanted plates, Anton + Saira Condensed.
+ * Skin "bluebolt" (default): blue / white / yellow / black, exactly as v0.3.1.
+ * It is two looks side by side: the HUD layer (style 1, after the html-in-canvas
+ * console: hard offset shadows, slanted plates, glass panels, black strips) and the
+ * app layer (style 2, after mobile-game menus: faceted gradient faces, soft shadows,
+ * navy headers). skins/hud.css and skins/app.css push one look onto everything.
  *
  * A skin only fills the semantic tokens listed in docs/skins.md; it never styles
- * elements. This one also answers to :root, so pages without data-skin get it.
+ * elements. This one also answers to :root, so pages without data-skin get it, and
+ * it is the base that hud and app build on.
  */
 @layer bb-tokens, bb-skins;
 
 @layer bb-tokens {
   :root,
-  [data-skin="bluebolt"] {
+  [data-skin="bluebolt"],
+  [data-skin="hud"],
+  [data-skin="app"] {
     color-scheme: light;
 
     /* ---- surfaces & text ---- */
@@ -111,11 +117,12 @@
     --bb-stroke-color: var(--bb-ink);
     --bb-shadow: 6px 6px 0 var(--bb-ink);
     --bb-glow: 0 0 0 0 transparent; /* soft glow added to raised elements */
+    --bb-plate-sheen: linear-gradient(transparent, transparent); /* overlay on solid plates and strips */
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]),
-    :root:not([data-theme="light"]) [data-skin="bluebolt"] {
+    :root:not([data-theme="light"]) :is([data-skin="bluebolt"], [data-skin="hud"], [data-skin="app"]) {
       color-scheme: dark;
       --bb-paper: #060b1a;
       --bb-surface: #0d1530;
@@ -146,7 +153,7 @@
   }
 
   :root[data-theme="dark"],
-  :root[data-theme="dark"] [data-skin="bluebolt"] {
+  :root[data-theme="dark"] :is([data-skin="bluebolt"], [data-skin="hud"], [data-skin="app"]) {
     color-scheme: dark;
     --bb-paper: #060b1a;
     --bb-surface: #0d1530;

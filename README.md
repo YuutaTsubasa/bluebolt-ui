@@ -2,7 +2,7 @@
 
 藍・白・黃・黑的遊戲 HUD 風格 UI 套件，給 Svelte 5（含 Tauri v2）專案直接引用。
 
-- **多套樣式（skin）**：預設 `bluebolt`（藍白黃黑遊戲 HUD），另有 `azure`（主網站 yuuta-tsubasa.studio 的電光藍玻璃風）；用 `data-skin` 切換，可以只換頁面的一塊，也能混搭。見 [docs/skins.md](docs/skins.md)。
+- **多套樣式（skin）**：三個來源各一套：① `hud`（參考 html-in-canvas 控制台）、② `app`（參考手遊選單與對話框）、③ `azure`（主網站 yuuta-tsubasa.studio）；預設 `bluebolt` 是 v0.3.1 原樣（①＋②並存）。用 `data-skin` 切換，可以只換頁面的一塊，也能混搭。見 [docs/skins.md](docs/skins.md)。
 - **設計 token**：純 CSS 變數，分「語意層」（元件只認這層）與「skin 層」（填值）；每套 skin 都有淺色／深色，任何框架都能用。
 - **動態**：一條共用曲線 `cubic-bezier(.2,.9,.2,1)`、斜切進場、擦入、掃光、波紋；全部跟著「減少動態」設定。
 - **元件**：Svelte 5（runes）元件，原始碼直接隨套件發佈，由使用端的 Vite 編譯。
@@ -16,8 +16,10 @@
 | ![](docs/screenshots/overview-dark.jpg) | ![](docs/screenshots/stream-light.jpg) | ![](docs/screenshots/mobile.jpg) |
 | 角色選擇 | 排序對話框 | 設定 |
 | ![](docs/screenshots/roster.jpg) | ![](docs/screenshots/sort-dialog.jpg) | ![](docs/screenshots/settings.jpg) |
-| azure skin | azure 深色 | 融合（azure＋黃黑訊號） |
-| ![](docs/screenshots/skins-demo-azure.jpg) | ![](docs/screenshots/skins-demo-azure-dark.jpg) | ![](docs/screenshots/skins-demo-fusion.jpg) |
+| ① hud skin | ② app skin | ③ azure skin |
+| ![](docs/screenshots/skins-demo-hud.jpg) | ![](docs/screenshots/skins-demo-app.jpg) | ![](docs/screenshots/skins-demo-azure.jpg) |
+| azure 深色 | 融合（③＋①訊號＋②斜切面） | skin 並排 |
+| ![](docs/screenshots/skins-demo-azure-dark.jpg) | ![](docs/screenshots/skins-demo-fusion.jpg) | ![](docs/screenshots/skins-side-by-side.jpg) |
 
 風格參考 [MatchaChoco010 的 HTML-in-Canvas demo](https://matchachoco010.github.io/demo-html-in-canvas-bot-dashboard/)（該 repo 沒有授權條款，這裡只參考視覺語言，沒有使用它的任何程式碼或素材）。
 
@@ -42,7 +44,7 @@ CI 上要另外給有 repo 讀取權限的 token（例如 `git config --global u
 ### 1. 載入樣式（app 進入點一次）
 
 ```js
-import 'bluebolt-ui/styles.css'; // = fonts.css + fonts-azure.css + tokens.css + skins/azure.css + base.css
+import 'bluebolt-ui/styles.css'; // = fonts.css + fonts-azure.css + tokens.css（含 bluebolt／hud／app）+ skins/azure.css + base.css
 ```
 
 不想載網頁字型（例如 app 自己帶字型）就分開載；`tokens.css` 已含預設 skin，其他 skin 要在它後面載：
@@ -77,7 +79,7 @@ import 'bluebolt-ui/base.css';
 ```js
 import { setSkin, setTheme, setMotion } from 'bluebolt-ui';
 
-setSkin('azure');     // 'bluebolt'（預設）| 'azure'
+setSkin('azure');     // 'bluebolt'（預設）| 'hud' | 'app' | 'azure'
 setTheme('dark');     // 'auto' | 'light' | 'dark'，auto 跟系統
 setMotion('reduce');  // 'auto' | 'full' | 'reduce'，auto 跟系統「減少動態」
 ```
@@ -193,7 +195,7 @@ npm run build    # 建置 demo 到 dist/（確認元件都能編譯）
 ```
 
 - `src/lib/`：套件本體（就是發佈出去的內容）。
-- `src/demo/`：展示頁，用套件名稱 `bluebolt-ui` 匯入，跟使用端的寫法一樣。`App.svelte` 是滿版 HUD 控制台（數字鍵 1–8 切畫面），`Gallery.svelte` 是各元件的展示區塊，`AppLayer.svelte` 是角色選擇、各種對話框與設定畫面。`Skins.svelte`（`skins.html`）是仿網站版面＋三套 skin 並排。兩頁都吃網址參數 `?skin=azure|fusion&theme=light|dark&motion=reduce`。
+- `src/demo/`：展示頁，用套件名稱 `bluebolt-ui` 匯入，跟使用端的寫法一樣。`App.svelte` 是滿版 HUD 控制台（數字鍵 1–8 切畫面），`Gallery.svelte` 是各元件的展示區塊，`AppLayer.svelte` 是角色選擇、各種對話框與設定畫面。`Skins.svelte`（`skins.html`）是仿網站版面＋各 skin 並排。兩頁都吃網址參數 `?skin=hud|app|azure|fusion&theme=light|dark&motion=reduce`。
 - `src/lib/styles/skins/`：每套 skin 一個檔案。新增 skin 的步驟見 [docs/skins.md](docs/skins.md)。
 
 ### 發新版

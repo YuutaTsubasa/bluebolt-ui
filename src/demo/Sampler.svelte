@@ -1,10 +1,11 @@
 <!-- One block of components; rendered once per skin on the skins page. -->
 <script>
-  import { Panel, Button, Tag, Gauge, HazardStripe, ScanBar, Tele, StatusLamp, Chip, Plate, HexAvatar } from 'bluebolt-ui';
+  import { Panel, Button, Tag, Gauge, HazardStripe, ScanBar, Tele, StatusLamp, Chip, Plate, HexAvatar, SectionBar, OptionGrid } from 'bluebolt-ui';
 
   /** @type {{ name: string, note: string }} */
   let { name, note } = $props();
   let chip = $state(true);
+  let sort = $state('new');
 </script>
 
 <div class="sampler">
@@ -41,6 +42,8 @@
     <Tag variant="outline">LV.12</Tag>
     <Chip bind:selected={chip} count={12}>台麻</Chip>
   </div>
+  <SectionBar title="排序" en="Sort" />
+  <OptionGrid columns={3} bind:value={sort} options={[{ value: 'new', label: '最新' }, { value: 'lv', label: '等級' }, { value: 'rare', label: '稀有度' }]} />
   <div class="row"><StatusLamp state="live" en="LIVE" /><StatusLamp state="warn" en="WARN" /></div>
   <Gauge value={0.86} label="負載" en="LOAD" segments={16} />
   <HazardStripe label="CAUTION — 注意" height={18} />

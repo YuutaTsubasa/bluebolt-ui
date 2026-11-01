@@ -42,7 +42,7 @@
     gap: 10px;
     height: 30px;
     padding-right: 12px;
-    background: var(--bb-strip);
+    background: var(--bb-plate-sheen), var(--bb-strip);
     color: var(--bb-on-strip);
     clip-path: polygon(calc(8px * var(--bb-slant)) 0, 100% 0, calc(100% - 8px * var(--bb-slant)) 100%, 0 100%);
     animation: bb-lane-in var(--bb-t-enter) var(--bb-ease) both;
@@ -64,7 +64,7 @@
     clip-path: polygon(calc(8px * var(--bb-slant)) 0, 100% 0, calc(100% - 8px * var(--bb-slant)) 100%, 0 100%);
   }
   li.active .code {
-    background: var(--bb-primary);
+    background: var(--bb-plate-sheen), var(--bb-primary);
     color: var(--bb-on-primary);
   }
   .nm {

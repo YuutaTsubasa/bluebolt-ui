@@ -40,7 +40,7 @@
   const params = new URLSearchParams(location.search);
   let theme = $state(params.get('theme') ?? 'auto');
   let motion = $state(params.get('motion') ?? 'auto');
-  // "fusion" = azure plus bluebolt's yellow signal and slanted edges (see fusion.css)
+  // "fusion" = azure base + hud's yellow signal and slants + app's facets (see fusion.css)
   let skin = $state(params.get('skin') ?? 'bluebolt');
   $effect(() => setTheme(theme));
   $effect(() => setMotion(motion));
@@ -254,6 +254,8 @@
       bind:value={skin}
       options={[
         { value: 'bluebolt', label: 'bluebolt' },
+        { value: 'hud', label: 'hud' },
+        { value: 'app', label: 'app' },
         { value: 'azure', label: 'azure' },
         { value: 'fusion', label: '融合' },
       ]}

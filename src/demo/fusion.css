@@ -1,8 +1,9 @@
 /*
- * Fusion example: the azure skin with bluebolt's yellow/black signal, hazard
- * stripes and slanted edges mixed back in. Nothing here touches a component;
- * it only re-fills semantic tokens, which is all an app needs to do to mix skins.
- * Unlayered, so it wins over both skin layers.
+ * Fusion example drawing from all three styles: the azure base (style 3: electric
+ * blue, glass, Orbitron), hud's yellow/black signal, hazard stripes, slants and hard
+ * shadows (style 1), and app's faceted gradient faces (style 2). Nothing here touches
+ * a component; it only re-fills semantic tokens, which is all an app needs to do to
+ * mix skins. Unlayered, so it wins over every skin layer.
  */
 :root.demo-fusion,
 .demo-fusion {
@@ -16,6 +17,11 @@
   --bb-skew: -12deg;
   --bb-slant: 1;
   --bb-hard: 1;
+  /* from app: facets over solid plates and faceted button faces */
+  --bb-facets: linear-gradient(118deg, rgb(255 255 255 / 0.16) 0 26%, transparent 26% 58%, rgb(255 255 255 / 0.07) 58% 74%, transparent 74%);
+  --bb-plate-sheen: var(--bb-facets);
+  --bb-face-primary: var(--bb-facets), linear-gradient(180deg, #3b82f6, #1d4ed8);
+  --bb-face-gray: var(--bb-facets), linear-gradient(180deg, #64748b, #3f4b63);
 }
 :root.demo-fusion[data-theme="dark"],
 :root[data-theme="dark"] .demo-fusion {

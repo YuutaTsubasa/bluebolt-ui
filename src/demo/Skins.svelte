@@ -33,6 +33,8 @@
       bind:value={skin}
       options={[
         { value: 'bluebolt', label: 'bluebolt' },
+        { value: 'hud', label: 'hud' },
+        { value: 'app', label: 'app' },
         { value: 'azure', label: 'azure' },
         { value: 'fusion', label: '融合' },
       ]}
@@ -86,15 +88,19 @@
   </section>
 
   <section class="sec">
-    <SectionHead num="—" en="SKINS" zh="同一組元件，三套樣式" sub="SIDE BY SIDE" />
+    <SectionHead num="—" en="SKINS" zh="同一組元件，三套風格" sub="SIDE BY SIDE" />
     <p class="note">
-      每一欄都是同樣的標記，只差外層的 <code>data-skin</code>。「融合」是 azure 再把 signal 換回 bluebolt 的黃黑、打開斜角與硬陰影；
+      每一欄都是同樣的標記，只差外層的 <code>data-skin</code>。<b>hud</b> 是第一套（參考 html-in-canvas 直播控制台）、
+      <b>app</b> 是第二套（參考手遊選單與對話框）、<b>azure</b> 是第三套（主網站）；預設的 <b>bluebolt</b> 就是 v0.3.1
+      原樣：HUD 元件用第一套、應用層元件用第二套。「融合」以 azure 為底，加上 hud 的黃黑訊號、斜角與硬陰影，再加 app 的斜切漸層面；
       只改語意變數，沒有改任何元件。
     </p>
     <div class="cols">
-      <div data-skin="bluebolt"><Sampler name="bluebolt" note='data-skin="bluebolt"' /></div>
-      <div data-skin="azure"><Sampler name="azure" note='data-skin="azure"' /></div>
-      <div data-skin="azure" class="demo-fusion"><Sampler name="fusion" note="azure + yellow signal" /></div>
+      <div data-skin="bluebolt"><Sampler name="bluebolt" note="預設 = hud + app（v0.3.1）" /></div>
+      <div data-skin="hud"><Sampler name="hud" note="① html-in-canvas 控制台" /></div>
+      <div data-skin="app"><Sampler name="app" note="② 手遊選單與對話框" /></div>
+      <div data-skin="azure"><Sampler name="azure" note="③ yuuta-tsubasa.studio" /></div>
+      <div data-skin="azure" class="demo-fusion"><Sampler name="fusion" note="③ 底＋① 訊號＋② 斜切面" /></div>
     </div>
     <div class="tags">
       <Tag variant="outline">--bb-primary</Tag><Tag variant="outline">--bb-signal</Tag><Tag variant="outline">--bb-font-display</Tag>
@@ -205,7 +211,7 @@
   }
   .cols {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 16px;
   }
   .tags {

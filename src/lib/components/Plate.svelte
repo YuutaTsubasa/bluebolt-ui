@@ -62,7 +62,7 @@
     height: 100%;
     box-sizing: border-box;
     padding: var(--bb-space-5);
-    background: var(--_bg);
+    background: var(--bb-plate-sheen), var(--_bg);
     color: var(--_fg);
     clip-path: polygon(0 0, calc(100% - var(--bb-cut)) 0, 100% var(--bb-cut), 100% 100%, 0 100%);
     border-left: 4px solid var(--bb-primary);

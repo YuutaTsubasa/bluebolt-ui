@@ -75,7 +75,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(112deg, var(--_bg) 0 72%, var(--_facet, var(--_bg)) 72%);
+    background: var(--bb-plate-sheen), linear-gradient(112deg, var(--_bg) 0 72%, var(--_facet, var(--_bg)) 72%);
     transform: skewX(var(--bb-skew));
     box-shadow: 0 0 0 0 var(--_shadow);
     transition:

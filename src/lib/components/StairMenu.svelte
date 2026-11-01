@@ -147,7 +147,7 @@
     position: absolute;
     z-index: -1;
     inset: 0.02em -0.9em 0.02em -2em;
-    background: var(--bb-strip);
+    background: var(--bb-plate-sheen), var(--bb-strip);
     transform: skewX(var(--bb-skew)) scaleX(0);
     transform-origin: left center;
     transition: transform var(--bb-dur-3) var(--bb-ease);

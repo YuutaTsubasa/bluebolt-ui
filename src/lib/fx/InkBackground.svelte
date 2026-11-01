@@ -68,7 +68,8 @@ void main(){
 }`;
 
   function cssColor(name) {
-    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    // read from the canvas so a re-skinned subtree ([data-skin] on an ancestor) is honoured
+    const v = getComputedStyle(canvas ?? document.documentElement).getPropertyValue(name).trim();
     const m = v.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
     if (!m) return [0, 0, 0];
     const hex = m[1].length === 3 ? m[1].replace(/./g, '$&$&') : m[1];
@@ -194,6 +195,8 @@ void main(){
     io.observe(canvas);
     const mo = new MutationObserver(refreshMode);
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-motion', 'data-skin', 'class', 'style'] });
+    const moSkin = new MutationObserver(refreshMode);
+    moSkin.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['data-skin'] });
     const mqDark = matchMedia('(prefers-color-scheme: dark)');
     const mqMotion = matchMedia('(prefers-reduced-motion: reduce)');
     mqDark.addEventListener('change', refreshMode);
@@ -208,6 +211,7 @@ void main(){
       ro.disconnect();
       io.disconnect();
       mo.disconnect();
+      moSkin.disconnect();
       mqDark.removeEventListener('change', refreshMode);
       mqMotion.removeEventListener('change', refreshMode);
       document.removeEventListener('visibilitychange', kick);
