@@ -58,10 +58,10 @@
   };
 
   const swatches = [
-    ['--bb-blue', '藍 主色'],
-    ['--bb-blue-soft', '淡藍 色板'],
-    ['--bb-blue-text', '藍 文字'],
-    ['--bb-yellow', '黃 訊號'],
+    ['--bb-primary', '藍 主色'],
+    ['--bb-primary-soft', '淡藍 色板'],
+    ['--bb-primary-text', '藍 文字'],
+    ['--bb-signal', '黃 訊號'],
     ['--bb-ink', '黑 文字'],
     ['--bb-paper', '白 底色'],
     ['--bb-surface', '白 卡片'],
@@ -250,9 +250,9 @@
   .bolt {
     width: 22px;
     height: 30px;
-    background: var(--bb-yellow);
+    background: var(--bb-signal);
     clip-path: polygon(55% 0, 0 58%, 42% 58%, 30% 100%, 100% 36%, 56% 36%, 75% 0);
-    filter: drop-shadow(2px 2px 0 var(--bb-blue));
+    filter: drop-shadow(2px 2px 0 var(--bb-primary));
   }
   .name {
     font-family: var(--bb-font-display);
@@ -262,8 +262,8 @@
   .name b {
     margin-left: 4px;
     padding: 0 6px;
-    background: var(--bb-blue);
-    color: var(--bb-on-blue);
+    background: var(--bb-primary);
+    color: var(--bb-on-primary);
     font-weight: 400;
   }
   .ver {
@@ -307,7 +307,7 @@
     margin: 20px 0 32px;
     padding: 12px 16px;
     background: var(--bb-surface);
-    border-left: 4px solid var(--bb-yellow);
+    border-left: 4px solid var(--bb-signal);
     line-height: 1.7;
     color: var(--bb-ink-2);
   }

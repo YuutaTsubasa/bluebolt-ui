@@ -22,7 +22,7 @@
   const FS = `#version 300 es
 precision highp float;
 uniform vec2 uRes; uniform float uTime; uniform vec2 uPtr; uniform float uStir; uniform float uSurge;
-uniform vec3 uPaper, uBlue, uYellow; uniform float uDark, uAmount, uRibbons, uZoom;
+uniform vec3 uPaper, uBlue, uYellow, uLo, uHi; uniform float uDark, uAmount, uRibbons, uZoom, uSkinMetal;
 out vec4 o;
 float h21(vec2 p){ p = fract(p*vec2(123.34, 456.21)); p += dot(p, p+45.32); return fract(p.x*p.y); }
 float vn(vec2 p){ vec2 i=floor(p), f=fract(p); vec2 u=f*f*(3.-2.*f);
@@ -73,6 +73,8 @@ void main(){
   float spec = pow(max(dot(n, normalize(vec3(-.35,.55,1.))), 0.), 80.);
   vec3 lo = mix(vec3(.07,.08,.11), vec3(.01,.02,.05), uDark);
   vec3 hi = mix(vec3(.98,.99,1.), vec3(.66,.74,.9), uDark);
+  // a skin may set its own metal (--bb-chrome-lo / --bb-chrome-hi)
+  lo = mix(lo, uLo, uSkinMetal); hi = mix(hi, uHi, uSkinMetal);
   vec3 chrome = mix(lo, hi, tone) + spec;
   chrome *= mix(vec3(1.), vec3(.9,.94,1.08), .6); // cool tint
 
@@ -113,14 +115,19 @@ void main(){
     if (!canvas) return;
     const stop = runShader(canvas, {
       fragment: FS,
-      uniforms: ['uPaper', 'uBlue', 'uYellow', 'uDark', 'uAmount', 'uRibbons', 'uZoom'],
+      uniforms: ['uPaper', 'uBlue', 'uYellow', 'uLo', 'uHi', 'uSkinMetal', 'uDark', 'uAmount', 'uRibbons', 'uZoom'],
       scale: () => scale,
       interactive: () => interactive,
       onTheme(gl, u) {
-        gl.uniform3fv(u.uPaper, cssColor('--bb-paper'));
-        gl.uniform3fv(u.uBlue, cssColor('--bb-blue'));
-        gl.uniform3fv(u.uYellow, cssColor('--bb-yellow'));
+        gl.uniform3fv(u.uPaper, cssColor('--bb-paper', undefined, canvas));
+        gl.uniform3fv(u.uBlue, cssColor('--bb-primary', undefined, canvas));
+        gl.uniform3fv(u.uYellow, cssColor('--bb-signal', undefined, canvas));
         gl.uniform1f(u.uDark, isDark() ? 1 : 0);
+        const lo = cssColor('--bb-chrome-lo', null, canvas);
+        const hi = cssColor('--bb-chrome-hi', null, canvas);
+        gl.uniform1f(u.uSkinMetal, lo && hi ? 1 : 0);
+        gl.uniform3fv(u.uLo, lo ?? [0, 0, 0]);
+        gl.uniform3fv(u.uHi, hi ?? [0, 0, 0]);
       },
       onFrame(gl, u) {
         gl.uniform1f(u.uAmount, amount);
@@ -160,7 +167,7 @@ void main(){
   }
   .fallback {
     background:
-      linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--bb-blue) 30%, transparent) 38%, transparent 46%),
+      linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--bb-primary) 30%, transparent) 38%, transparent 46%),
       radial-gradient(50% 60% at 70% 40%, color-mix(in srgb, var(--bb-ink) 18%, transparent), transparent 70%),
       var(--bb-paper);
   }

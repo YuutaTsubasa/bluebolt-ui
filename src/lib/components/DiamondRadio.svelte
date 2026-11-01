@@ -104,22 +104,22 @@
     transform: rotate(45deg) scale(calc(1 + 0.1 * var(--bb-motion)));
   }
   button.on {
-    color: var(--bb-sky);
+    color: var(--bb-accent);
   }
   button.on .dia {
-    border-color: #ffffff;
-    background: #ffffff;
-    box-shadow: 0 0 10px 2px color-mix(in srgb, var(--bb-sky) 80%, transparent);
+    border-color: var(--bb-white);
+    background: var(--bb-white);
+    box-shadow: 0 0 10px 2px color-mix(in srgb, var(--bb-accent) 80%, transparent);
   }
   button.on .dia::after {
-    background: linear-gradient(135deg, #3d9bff, #0063f0);
+    background: var(--bb-face-accent);
   }
   button:focus-visible {
     outline: none;
     box-shadow: none;
   }
   button:focus-visible .dia {
-    outline: 2px solid var(--bb-yellow);
+    outline: 2px solid var(--bb-signal);
     outline-offset: 4px;
   }
 </style>

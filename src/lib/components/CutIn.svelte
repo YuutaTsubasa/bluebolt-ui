@@ -69,20 +69,20 @@
     overflow: hidden;
   }
   .band {
-    --_bg: var(--bb-blue);
-    --_fg: var(--bb-on-blue);
-    --_hl: var(--bb-yellow);
+    --_bg: var(--bb-primary);
+    --_fg: var(--bb-on-primary);
+    --_hl: var(--bb-signal);
     width: 140vw;
     transform-origin: center;
     rotate: -6deg;
     background: var(--_bg);
     color: var(--_fg);
-    box-shadow: 0 12px 0 var(--bb-panel-ink);
+    box-shadow: 0 calc(12px * var(--bb-hard)) 0 var(--bb-panel-ink), var(--bb-glow);
   }
   .t-yellow .band {
-    --_bg: var(--bb-yellow);
-    --_fg: var(--bb-on-yellow);
-    --_hl: var(--bb-blue);
+    --_bg: var(--bb-signal);
+    --_fg: var(--bb-on-signal);
+    --_hl: var(--bb-primary);
   }
   .stripe {
     height: 10px;

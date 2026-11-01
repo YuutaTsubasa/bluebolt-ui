@@ -55,7 +55,7 @@
     opacity: 0.12;
   }
   .dot {
-    fill: var(--bb-yellow);
+    fill: var(--bb-signal);
     stroke: var(--bb-panel-ink);
     stroke-width: 1.5;
     transform-box: fill-box;

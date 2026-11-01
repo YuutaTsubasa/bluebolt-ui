@@ -67,20 +67,20 @@
     top: 20px;
   }
   .ticket {
-    --_accent: var(--bb-blue);
+    --_accent: var(--bb-primary);
     pointer-events: auto;
     display: grid;
     grid-template-columns: auto 1fr auto;
     background: var(--bb-surface);
     color: var(--bb-ink);
     box-shadow: var(--bb-shadow);
-    border: 2px solid var(--bb-ink);
+    border: var(--bb-stroke) solid var(--bb-stroke-color);
   }
   .tone-success {
-    --_accent: var(--bb-blue);
+    --_accent: var(--bb-primary);
   }
   .tone-warn {
-    --_accent: var(--bb-yellow);
+    --_accent: var(--bb-signal);
   }
   .stub {
     display: flex;
@@ -89,11 +89,11 @@
     gap: 6px;
     padding: 10px 12px;
     background: var(--_accent);
-    color: var(--bb-on-blue);
+    color: var(--bb-on-primary);
     border-right: 2px dashed var(--bb-surface);
   }
   .tone-warn .stub {
-    color: var(--bb-on-yellow);
+    color: var(--bb-on-signal);
   }
   .no {
     font-size: 1.5rem;
@@ -106,7 +106,7 @@
     min-width: 0;
   }
   .en {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 700;
     font-size: var(--bb-text-xs);
     letter-spacing: 0.2em;

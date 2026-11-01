@@ -10,12 +10,17 @@ import { fxBus } from './bus.js';
 const VS = `#version 300 es
 in vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }`;
 
-/** Read a #rrggbb token from :root as [r,g,b] in 0..1. */
-export function cssColor(name) {
-  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  const m = v.match(/^#([0-9a-f]{6})$/i);
-  if (!m) return [0, 0, 0];
-  const n = parseInt(m[1], 16);
+/**
+ * Read a #rrggbb / #rgb token as [r,g,b] in 0..1 (or `fallback` if it is not one).
+ * Pass the canvas as `el` so a re-skinned subtree ([data-skin] on an ancestor) is honoured.
+ */
+export function cssColor(name, fallback = [0, 0, 0], el = document.documentElement) {
+  const v = getComputedStyle(el).getPropertyValue(name).trim();
+  const m = v.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+  if (!m) return fallback;
+  // minifiers shorten #ffffff to #fff
+  const hex = m[1].length === 3 ? m[1].replace(/./g, '$&$&') : m[1];
+  const n = parseInt(hex, 16);
   return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
 }
 
@@ -150,7 +155,10 @@ export function runShader(canvas, opts) {
   });
   io.observe(canvas);
   const mo = new MutationObserver(refresh);
-  mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-motion'] });
+  mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-motion', 'data-skin', 'class', 'style'] });
+  // a skin switched on any ancestor subtree changes the colours too
+  const moSkin = new MutationObserver(refresh);
+  moSkin.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['data-skin'] });
   const mqDark = matchMedia('(prefers-color-scheme: dark)');
   const mqMotion = matchMedia('(prefers-reduced-motion: reduce)');
   mqDark.addEventListener('change', refresh);
@@ -165,6 +173,7 @@ export function runShader(canvas, opts) {
     ro.disconnect();
     io.disconnect();
     mo.disconnect();
+    moSkin.disconnect();
     mqDark.removeEventListener('change', refresh);
     mqMotion.removeEventListener('change', refresh);
     document.removeEventListener('visibilitychange', kick);

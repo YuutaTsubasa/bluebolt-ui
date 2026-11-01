@@ -28,8 +28,8 @@
   span {
     padding: 1px 10px;
     background: var(--bb-panel-ink);
-    color: var(--bb-yellow);
-    font-family: var(--bb-font-cond);
+    color: var(--bb-signal);
+    font-family: var(--bb-font-tech);
     font-weight: 700;
     font-size: var(--bb-text-xs);
     letter-spacing: 0.24em;

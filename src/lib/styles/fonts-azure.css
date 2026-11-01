@@ -1,0 +1,25 @@
+/*
+ * Webfonts for the "azure" skin (SIL Open Font License, via Fontsource).
+ * Noto Sans TC and JetBrains Mono come from fonts.css.
+ */
+@import "@fontsource/chakra-petch/400.css";
+@import "@fontsource/chakra-petch/500.css";
+@import "@fontsource/chakra-petch/600.css";
+@import "@fontsource/chakra-petch/700.css";
+@import "@fontsource/orbitron/500.css";
+@import "@fontsource/orbitron/700.css";
+@import "@fontsource/orbitron/900.css";
+
+/*
+ * Orbitron as a display face: heavy at every weight (components set the display font
+ * without a weight, since Anton has only one) and scaled down, because Orbitron runs
+ * about 1.5x wider than Anton and layouts are sized for Anton.
+ */
+@font-face {
+  font-family: "Orbitron Display";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 1 1000;
+  size-adjust: 72%;
+  src: url("@fontsource/orbitron/files/orbitron-latin-800-normal.woff2") format("woff2");
+}

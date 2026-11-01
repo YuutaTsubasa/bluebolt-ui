@@ -102,12 +102,12 @@
     border-radius: 50%;
     background:
       radial-gradient(circle at 35% 28%, rgb(255 255 255 / 0.85), transparent 45%),
-      radial-gradient(circle, color-mix(in srgb, var(--bb-paper) 72%, transparent) 55%, color-mix(in srgb, var(--bb-blue-soft) 50%, transparent));
+      radial-gradient(circle, color-mix(in srgb, var(--bb-paper) 72%, transparent) 55%, color-mix(in srgb, var(--bb-primary-soft) 50%, transparent));
     backdrop-filter: blur(10px) saturate(1.3);
     -webkit-backdrop-filter: blur(10px) saturate(1.3);
     box-shadow:
       inset 0 0 0 1px var(--bb-glass-edge),
-      inset -12px -18px 40px color-mix(in srgb, var(--bb-blue) 18%, transparent);
+      inset -12px -18px 40px color-mix(in srgb, var(--bb-primary) 18%, transparent);
   }
   svg {
     position: absolute;
@@ -128,7 +128,7 @@
     transition: transform 1.1s var(--bb-ease);
   }
   .ring-txt {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 700;
     font-size: 21px;
     letter-spacing: 0.32em;
@@ -136,10 +136,10 @@
     fill: var(--bb-ink);
   }
   .ring-txt :global(textPath.on) {
-    fill: var(--bb-blue-text);
+    fill: var(--bb-primary-text);
   }
   .marker {
-    fill: var(--bb-yellow);
+    fill: var(--bb-signal);
     stroke: var(--bb-ink);
     stroke-width: 1;
   }
@@ -167,7 +167,7 @@
     stroke-dasharray: 18 82;
   }
   .a2 {
-    stroke: var(--bb-blue);
+    stroke: var(--bb-primary);
     stroke-width: 6;
     stroke-dasharray: 9 91;
     stroke-dashoffset: -52;
@@ -208,7 +208,7 @@
     transform: translateX(-50%);
     font-family: var(--bb-font-script);
     font-size: clamp(1.6rem, 3vw, 2.6rem);
-    color: var(--bb-blue-text);
+    color: var(--bb-primary-text);
     white-space: nowrap;
   }
 </style>

@@ -24,18 +24,18 @@
     font-size: 12px;
   }
   .v-ink {
-    background: #0b0f1a;
-    color: #ffffff;
-    box-shadow: 2px 2px 0 rgb(0 0 0 / 0.25);
+    background: var(--bb-black);
+    color: var(--bb-white);
+    box-shadow: calc(2px * var(--bb-hard)) calc(2px * var(--bb-hard)) 0 rgb(0 0 0 / 0.25);
   }
   .v-yellow {
-    background: var(--bb-face-yellow);
-    color: #0b0f1a;
+    background: var(--bb-face-signal);
+    color: var(--bb-on-signal);
     box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
   }
   .v-blue {
-    background: var(--bb-face-blue);
-    color: #ffffff;
+    background: var(--bb-face-primary);
+    color: var(--bb-on-primary);
   }
   .v-outline {
     border: 1.5px solid currentColor;

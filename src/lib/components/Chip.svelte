@@ -30,7 +30,7 @@
     font-size: var(--bb-text-sm);
     font-weight: 700;
     cursor: pointer;
-    clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 8px * var(--bb-slant)) 100%, 0 100%);
     padding-right: 18px;
     transition:
       background-color var(--bb-dur-2),
@@ -63,7 +63,7 @@
     color: var(--bb-on-ink);
   }
   .bb-chip.on .mark {
-    background: var(--bb-yellow);
-    border-color: var(--bb-yellow);
+    background: var(--bb-signal);
+    border-color: var(--bb-signal);
   }
 </style>

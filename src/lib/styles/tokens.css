@@ -1,170 +1,86 @@
 /*
- * bluebolt-ui design tokens.
- * Four colours: blue (primary), white (paper), yellow (signal), black (ink).
- * Theme: follows prefers-color-scheme; force with <html data-theme="light|dark">.
+ * bluebolt-ui design tokens, in two layers (see docs/skins.md):
+ *   - semantic tokens (primary, signal, ink, paper, fonts, shape…) are the only
+ *     thing components read; a skin in styles/skins/ fills them.
+ *   - structural tokens below (type scale, spacing, motion) are shared by every skin.
+ * Skin:   bluebolt by default (= hud + app as in v0.3.1); hud and app are included here,
+ *         azure needs skins/azure.css. Pick one with data-skin="hud|app|azure" on <html>
+ *         or on any element (a subtree can wear a different skin).
+ * Theme:  follows prefers-color-scheme; force with <html data-theme="light|dark">.
  * Motion: follows prefers-reduced-motion; force with <html data-motion="full|reduce">.
+ * All three are independent.
  */
-:root {
-  color-scheme: light;
+@layer bb-tokens, bb-skins;
+@import "./skins/bluebolt.css";
+@import "./skins/hud.css";
+@import "./skins/app.css";
 
-  /* ---- palette: light ---- */
-  --bb-paper: #f3f6fd;
-  --bb-surface: #ffffff;
-  --bb-ink: #0b0f1a;
-  --bb-ink-2: #3a4252;
-  --bb-ink-3: #5f6878;
-  --bb-ink-4: #a3abb9;
-  --bb-line: rgb(11 15 26 / 0.14);
-  --bb-line-2: rgb(11 15 26 / 0.28);
+@layer bb-tokens {
+  :root {
+    /* ---- type scale ---- */
+    --bb-text-xs: 0.75rem;
+    --bb-text-sm: 0.875rem;
+    --bb-text-md: 1rem;
+    --bb-text-lg: 1.25rem;
+    --bb-text-xl: 1.75rem;
+    --bb-text-2xl: 2.5rem;
+    --bb-text-hero: clamp(2.5rem, 6vw, 5rem);
 
-  --bb-blue: #183dd6;
-  --bb-blue-shade: #1133b1; /* darker facet of the same blue */
-  --bb-blue-2: #4a72ff;
-  --bb-blue-soft: #c4d6ff;
-  --bb-blue-deep: #1133b1;
-  --bb-blue-text: #183dd6; /* blue used as text on paper/surface (AA) */
-  --bb-yellow: #ffd21f;
-  --bb-yellow-soft: #fff1a8;
-  --bb-yellow-deep: #7a5c00;
+    /* ---- space ---- */
+    --bb-space-1: 4px;
+    --bb-space-2: 8px;
+    --bb-space-3: 12px;
+    --bb-space-4: 16px;
+    --bb-space-5: 24px;
+    --bb-space-6: 32px;
+    --bb-space-7: 48px;
 
-  /* text that sits on a filled colour */
-  --bb-on-blue: #ffffff;
-  --bb-on-yellow: #0b0f1a;
-  --bb-on-ink: #eef2fa;
-  --bb-on-ink-2: #9aa6bd;
-
-  /* glass panels & HUD lines */
-  --bb-glass: rgb(255 255 255 / 0.62);
-  --bb-glass-strong: rgb(255 255 255 / 0.82);
-  --bb-glass-edge: rgb(255 255 255 / 0.9);
-  --bb-hud-line: rgb(11 15 26 / 0.22);
-  --bb-hud-dot: rgb(11 15 26 / 0.16);
-  --bb-strip: #0b0f1a; /* black header strips */
-  --bb-on-strip: #ffffff;
-  /* app layer (dialogs, settings, selection screens): faceted gradient faces */
-  --bb-facets: linear-gradient(118deg, rgb(255 255 255 / 0.16) 0 26%, transparent 26% 58%, rgb(255 255 255 / 0.07) 58% 74%, transparent 74%);
-  --bb-face-blue: var(--bb-facets), linear-gradient(180deg, #2a4be2, #1030c9);
-  --bb-face-gray: var(--bb-facets), linear-gradient(180deg, #6b6d87, #474960);
-  --bb-face-light: linear-gradient(118deg, rgb(255 255 255 / 0.75) 0 30%, transparent 30%), linear-gradient(180deg, #fbfcff, #dfe2ec);
-  --bb-face-yellow: linear-gradient(180deg, #ffe066, #ffc800);
-  --bb-navy: #1e263d; /* dialog header */
-  --bb-sky: #3d9bff; /* highlight text and glow on dark surfaces */
-  --bb-sys-panel: #f6f7fb; /* light dialog body */
-  --bb-sys-panel-2: #e9ebf3; /* its faint diagonal shapes */
-  --bb-sys-dark: rgb(16 20 28 / 0.84); /* dark settings panel */
-  --bb-sys-dark-edge: rgb(255 255 255 / 0.5);
-  --bb-sys-shadow: 0 3px 6px rgb(0 0 0 / 0.32);
-
-  /* the inverted "ink" panel stays dark in both themes */
-  --bb-panel-ink: #0b0f1a;
-
-  /* ---- type ---- */
-  --bb-font-zh: "Noto Sans TC Variable", "Microsoft JhengHei UI", "PingFang TC", system-ui, sans-serif;
-  --bb-font-display: "Anton", "Impact", var(--bb-font-zh);
-  --bb-font-cond: "Saira Condensed", "Arial Narrow", var(--bb-font-zh);
-  --bb-font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
-  --bb-font-serif: "Noto Serif TC", "PMingLiU", serif; /* vertical display kanji */
-  --bb-font-script: "Pinyon Script", cursive; /* small handwritten accents */
-
-  --bb-text-xs: 0.75rem;
-  --bb-text-sm: 0.875rem;
-  --bb-text-md: 1rem;
-  --bb-text-lg: 1.25rem;
-  --bb-text-xl: 1.75rem;
-  --bb-text-2xl: 2.5rem;
-  --bb-text-hero: clamp(2.5rem, 6vw, 5rem);
-
-  /* ---- space & shape ---- */
-  --bb-space-1: 4px;
-  --bb-space-2: 8px;
-  --bb-space-3: 12px;
-  --bb-space-4: 16px;
-  --bb-space-5: 24px;
-  --bb-space-6: 32px;
-  --bb-space-7: 48px;
-  --bb-radius: 2px;
-  --bb-skew: -12deg;
-  --bb-cut: 14px; /* corner cut on plates */
-  --bb-shadow: 6px 6px 0 var(--bb-ink);
-
-  /* ---- motion ---- */
-  --bb-ease: cubic-bezier(0.2, 0.9, 0.2, 1); /* fast out, soft settle */
-  --bb-ease-in: cubic-bezier(0.6, 0, 0.8, 0.2);
-  --bb-ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
-  --bb-dur-1: 120ms;
-  --bb-dur-2: 200ms;
-  --bb-dur-3: 280ms;
-  --bb-dur-4: 550ms;
-  --bb-dur-5: 900ms;
-  --bb-stagger: 28ms;
-  /* 1 = full motion, 0 = reduced: multiply movement distances by this */
-  --bb-motion: 1;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bb-paper: #060b1a;
-    --bb-surface: #0d1530;
-    --bb-ink: #eef2fa;
-    --bb-ink-2: #b4bdcc;
-    --bb-ink-3: #8a94a7;
-    --bb-ink-4: #4c566a;
-    --bb-line: rgb(238 242 250 / 0.16);
-    --bb-line-2: rgb(238 242 250 / 0.3);
-    --bb-blue: #183dd6;
-    --bb-blue-2: #4d86ff;
-    --bb-blue-soft: #0a2466;
-    --bb-blue-deep: #a9c2ff;
-  --bb-blue-text: #4d86ff;
-    --bb-yellow: #ffd84a;
-    --bb-yellow-soft: #4a3d05;
-    --bb-yellow-deep: #ffe58a;
-    --bb-panel-ink: #05070c;
-    --bb-shadow: 6px 6px 0 #000;
-    --bb-glass: rgb(13 21 48 / 0.6);
-    --bb-glass-strong: rgb(13 21 48 / 0.82);
-    --bb-glass-edge: rgb(120 160 255 / 0.35);
-    --bb-hud-line: rgb(238 242 250 / 0.22);
-    --bb-hud-dot: rgb(238 242 250 / 0.14);
-    --bb-strip: #000000;
+    /* ---- motion ---- */
+    --bb-ease: cubic-bezier(0.2, 0.9, 0.2, 1); /* fast out, soft settle */
+    --bb-ease-in: cubic-bezier(0.6, 0, 0.8, 0.2);
+    --bb-ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+    --bb-dur-1: 120ms;
+    --bb-dur-2: 200ms;
+    --bb-dur-3: 280ms;
+    --bb-dur-4: 550ms;
+    --bb-dur-5: 900ms;
+    --bb-stagger: 28ms;
+    /* 1 = full motion, 0 = reduced: multiply movement distances by this */
+    --bb-motion: 1;
   }
-}
 
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bb-paper: #060b1a;
-  --bb-surface: #0d1530;
-  --bb-ink: #eef2fa;
-  --bb-ink-2: #b4bdcc;
-  --bb-ink-3: #8a94a7;
-  --bb-ink-4: #4c566a;
-  --bb-line: rgb(238 242 250 / 0.16);
-  --bb-line-2: rgb(238 242 250 / 0.3);
-  --bb-blue: #183dd6;
-  --bb-blue-2: #4d86ff;
-  --bb-blue-soft: #0a2466;
-  --bb-blue-deep: #a9c2ff;
-  --bb-blue-text: #4d86ff;
-  --bb-yellow: #ffd84a;
-  --bb-yellow-soft: #4a3d05;
-  --bb-yellow-deep: #ffe58a;
-  --bb-panel-ink: #05070c;
-  --bb-shadow: 6px 6px 0 #000;
-  --bb-glass: rgb(13 21 48 / 0.6);
-  --bb-glass-strong: rgb(13 21 48 / 0.82);
-  --bb-glass-edge: rgb(120 160 255 / 0.35);
-  --bb-hud-line: rgb(238 242 250 / 0.22);
-  --bb-hud-dot: rgb(238 242 250 / 0.14);
-  --bb-strip: #000000;
-}
+  /*
+   * Names from v0.3 and earlier, kept as aliases of the semantic tokens so apps
+   * that read them keep working under every skin. New code should use the
+   * semantic names. Redeclared on [data-skin] so a re-skinned subtree resolves them.
+   */
+  :root,
+  [data-skin] {
+    --bb-blue: var(--bb-primary);
+    --bb-blue-shade: var(--bb-primary-shade);
+    --bb-blue-2: var(--bb-primary-2);
+    --bb-blue-soft: var(--bb-primary-soft);
+    --bb-blue-deep: var(--bb-primary-deep);
+    --bb-blue-text: var(--bb-primary-text);
+    --bb-on-blue: var(--bb-on-primary);
+    --bb-yellow: var(--bb-signal);
+    --bb-yellow-soft: var(--bb-signal-soft);
+    --bb-yellow-deep: var(--bb-signal-deep);
+    --bb-on-yellow: var(--bb-on-signal);
+    --bb-sky: var(--bb-accent);
+    --bb-face-blue: var(--bb-face-primary);
+    --bb-face-yellow: var(--bb-face-signal);
+    --bb-font-zh: var(--bb-font-body);
+    --bb-font-cond: var(--bb-font-tech);
+  }
 
-@media (prefers-reduced-motion: reduce) {
-  :root:not([data-motion="full"]) {
+  @media (prefers-reduced-motion: reduce) {
+    :root:not([data-motion="full"]) {
+      --bb-motion: 0;
+    }
+  }
+
+  :root[data-motion="reduce"] {
     --bb-motion: 0;
   }
-}
-
-:root[data-motion="reduce"] {
-  --bb-motion: 0;
 }

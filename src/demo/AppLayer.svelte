@@ -433,7 +433,7 @@
     width: 150px;
     height: 110px;
     background:
-      radial-gradient(50% 40% at 50% 45%, var(--bb-yellow), transparent 70%),
+      radial-gradient(50% 40% at 50% 45%, var(--bb-signal), transparent 70%),
       linear-gradient(150deg, #e9ecf3, #b9bfcc);
     transform: perspective(300px) rotateX(20deg) rotateZ(-8deg);
     box-shadow: 0 6px 10px rgb(0 0 0 / 0.25);
@@ -473,7 +473,7 @@
     align-items: stretch;
   }
   .lic {
-    font: 600 10px var(--bb-font-cond);
+    font: 600 10px var(--bb-font-tech);
     letter-spacing: 0.12em;
     color: #555a6a;
   }
@@ -482,7 +482,7 @@
     color: #555a6a;
   }
   .cost b {
-    color: var(--bb-blue);
+    color: var(--bb-primary);
     font: 400 1.6rem var(--bb-font-display);
     margin-left: 8px;
   }

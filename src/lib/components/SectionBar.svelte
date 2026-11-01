@@ -19,8 +19,8 @@
     gap: 10px;
     margin: 0;
     padding: 5px 14px;
-    background: linear-gradient(90deg, var(--bb-blue) 0 30%, color-mix(in srgb, var(--bb-blue) 35%, transparent) 75%, transparent);
-    color: var(--bb-on-blue);
+    background: linear-gradient(90deg, var(--bb-primary) 0 30%, color-mix(in srgb, var(--bb-primary) 35%, transparent) 75%, transparent);
+    color: var(--bb-on-primary);
     font-size: var(--bb-text-md);
     font-weight: 800;
     letter-spacing: 0.06em;
@@ -35,7 +35,7 @@
     }
   }
   .en {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-size: 0.7em;
     font-weight: 700;
     letter-spacing: 0.2em;

@@ -91,7 +91,7 @@
     min-height: 100%;
     padding: 0 28px 40px 0;
     box-sizing: border-box;
-    color: #ffffff;
+    color: var(--bb-white);
     background: rgb(8 12 22 / 0.62);
     backdrop-filter: blur(10px) saturate(0.8);
     -webkit-backdrop-filter: blur(10px) saturate(0.8);
@@ -107,7 +107,7 @@
     bottom: 0;
     left: 9%;
     width: 12%;
-    background: linear-gradient(180deg, #0a5ce0, #1c45d8 60%, #0b3fcb);
+    background: var(--bb-face-band);
     clip-path: polygon(38% 0, 100% 0, 62% 100%, 0 100%);
     animation: bb-band-in var(--bb-t-enter) var(--bb-ease) both;
   }
@@ -130,15 +130,15 @@
     left: 0;
     right: 0;
     height: 46px;
-    background: repeating-linear-gradient(-45deg, var(--bb-yellow) 0 8px, #0b0f1a 8px 16px);
+    background: repeating-linear-gradient(-45deg, var(--bb-signal) 0 8px, var(--bb-black) 8px 16px);
   }
   .band-bolt {
     position: absolute;
     top: 64px;
     left: 58%;
     width: 22px;
-    fill: var(--bb-yellow);
-    filter: drop-shadow(2px 2px 0 #0b0f1a);
+    fill: var(--bb-signal);
+    filter: drop-shadow(calc(2px * var(--bb-hard)) calc(2px * var(--bb-hard)) 0 var(--bb-black));
   }
   .band-edge {
     position: absolute;
@@ -146,7 +146,7 @@
     bottom: 0;
     left: 9%;
     width: 12%;
-    background: var(--bb-yellow);
+    background: var(--bb-signal);
     clip-path: polygon(98% 0, 100% 0, 63.5% 100%, 61.5% 100%);
     animation: bb-band-in var(--bb-t-enter) var(--bb-ease) both;
     pointer-events: none;
@@ -156,7 +156,7 @@
     left: 6%;
     bottom: 2%;
     writing-mode: vertical-rl;
-    transform: rotate(180deg) skewY(12deg);
+    transform: rotate(180deg) skewY(calc(12deg * var(--bb-slant)));
     font-family: var(--bb-font-display);
     font-style: italic;
     font-size: clamp(3rem, 9vh, 5.4rem);
@@ -219,7 +219,7 @@
     padding: 0 12px;
     border: 1.5px solid rgb(255 255 255 / 0.9);
     background: rgb(8 14 30 / 0.35);
-    color: #ffffff;
+    color: var(--bb-white);
     font: inherit;
     font-weight: 800;
     letter-spacing: 0.06em;
@@ -229,11 +229,11 @@
       color var(--bb-dur-2);
   }
   button:hover:not(.on) {
-    background: rgb(61 155 255 / 0.18);
+    background: color-mix(in srgb, var(--bb-accent) 18%, transparent);
   }
   button.on {
     background: linear-gradient(118deg, #ffffff 0 60%, #e6ebf6 60%);
-    color: #0b0f1a;
+    color: var(--bb-black);
   }
   .ic {
     font-size: 20px;

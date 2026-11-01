@@ -69,7 +69,7 @@
     --_bg: var(--bb-surface);
     --_fg: var(--bb-ink);
     --_muted: var(--bb-ink-3);
-    --_line: var(--bb-blue);
+    --_line: var(--bb-primary);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -77,21 +77,21 @@
     padding: var(--bb-space-4) var(--bb-space-5);
     background: var(--_bg);
     color: var(--_fg);
-    border-top: 3px solid var(--bb-blue);
+    border-top: 3px solid var(--bb-primary);
   }
   .t-blue {
-    --_bg: var(--bb-blue);
-    --_fg: var(--bb-on-blue);
+    --_bg: var(--bb-primary);
+    --_fg: var(--bb-on-primary);
     --_muted: rgb(255 255 255 / 0.78);
-    --_line: var(--bb-yellow);
-    border-top-color: var(--bb-yellow);
+    --_line: var(--bb-signal);
+    border-top-color: var(--bb-signal);
   }
   .t-ink {
     --_bg: var(--bb-panel-ink);
     --_fg: var(--bb-on-ink);
     --_muted: var(--bb-on-ink-2);
-    --_line: var(--bb-yellow);
-    border-top-color: var(--bb-yellow);
+    --_line: var(--bb-signal);
+    border-top-color: var(--bb-signal);
   }
   .head {
     display: flex;
@@ -104,7 +104,7 @@
     font-size: var(--bb-text-sm);
   }
   .en {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 600;
     font-size: var(--bb-text-xs);
     letter-spacing: 0.18em;
@@ -120,7 +120,7 @@
     font-size: 3rem;
   }
   .unit {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 700;
     font-size: var(--bb-text-lg);
     color: var(--_muted);
@@ -139,8 +139,8 @@
     background: var(--bb-line);
   }
   .delta.up {
-    background: var(--bb-yellow);
-    color: var(--bb-on-yellow);
+    background: var(--bb-signal);
+    color: var(--bb-on-signal);
   }
   .delta.down {
     background: var(--bb-panel-ink);

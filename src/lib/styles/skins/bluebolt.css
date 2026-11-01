@@ -1,0 +1,187 @@
+/*
+ * Skin "bluebolt" (default): blue / white / yellow / black, exactly as v0.3.1.
+ * It is two looks side by side: the HUD layer (style 1, after the html-in-canvas
+ * console: hard offset shadows, slanted plates, glass panels, black strips) and the
+ * app layer (style 2, after mobile-game menus: faceted gradient faces, soft shadows,
+ * navy headers). skins/hud.css and skins/app.css push one look onto everything.
+ *
+ * A skin only fills the semantic tokens listed in docs/skins.md; it never styles
+ * elements. This one also answers to :root, so pages without data-skin get it, and
+ * it is the base that hud and app build on.
+ */
+@layer bb-tokens, bb-skins;
+
+@layer bb-tokens {
+  :root,
+  [data-skin="bluebolt"],
+  [data-skin="hud"],
+  [data-skin="app"] {
+    color-scheme: light;
+
+    /* ---- surfaces & text ---- */
+    --bb-paper: #f3f6fd;
+    --bb-page: var(--bb-paper); /* full-page background (may be a gradient) */
+    --bb-surface: #ffffff;
+    --bb-ink: #0b0f1a;
+    --bb-ink-2: #3a4252;
+    --bb-ink-3: #5f6878;
+    --bb-ink-4: #a3abb9;
+    --bb-line: rgb(11 15 26 / 0.14);
+    --bb-line-2: rgb(11 15 26 / 0.28);
+    --bb-black: #0b0f1a; /* fixed dark, same in both themes */
+    --bb-white: #ffffff; /* fixed light, same in both themes */
+
+    /* ---- primary: the brand colour ---- */
+    --bb-primary: #183dd6;
+    --bb-primary-shade: #1133b1; /* darker facet of the same colour */
+    --bb-primary-2: #4a72ff;
+    --bb-primary-soft: #c4d6ff;
+    --bb-primary-deep: #1133b1;
+    --bb-primary-text: #183dd6; /* primary used as text on paper/surface (AA) */
+    --bb-on-primary: #ffffff;
+
+    /* ---- signal: the attention colour (numbers, badges, hazard) ---- */
+    --bb-signal: #ffd21f;
+    --bb-signal-soft: #fff1a8;
+    --bb-signal-deep: #7a5c00;
+    --bb-on-signal: #0b0f1a;
+
+    /* highlight text and glow on dark surfaces */
+    --bb-accent: #3d9bff;
+
+    /* ---- dark panels & strips ---- */
+    --bb-panel-ink: #0b0f1a; /* the inverted panel stays dark in both themes */
+    --bb-on-ink: #eef2fa;
+    --bb-on-ink-2: #9aa6bd;
+    --bb-strip: #0b0f1a; /* header strips */
+    --bb-on-strip: #ffffff;
+
+    /* ---- glass & HUD lines ---- */
+    --bb-glass: rgb(255 255 255 / 0.62);
+    --bb-glass-strong: rgb(255 255 255 / 0.82);
+    --bb-glass-edge: rgb(255 255 255 / 0.9);
+    --bb-glass-blur: 14px;
+    --bb-glass-rim: linear-gradient(
+      125deg,
+      rgb(255 255 255 / 0.9),
+      color-mix(in srgb, var(--bb-primary) 55%, transparent) 30%,
+      rgb(255 255 255 / 0.4) 50%,
+      color-mix(in srgb, var(--bb-signal) 60%, transparent) 75%,
+      rgb(255 255 255 / 0.9)
+    );
+    --bb-panel-shadow: 0 18px 40px -18px rgb(11 15 26 / 0.45);
+    --bb-hud-line: rgb(11 15 26 / 0.22);
+    --bb-hud-dot: rgb(11 15 26 / 0.16);
+    --bb-hud-dots: 1; /* opacity of the dot grid in HudBackdrop */
+    --bb-hud-grid: 0; /* opacity of the line grid in HudBackdrop */
+    --bb-grid: rgb(11 15 26 / 0.06);
+    --bb-scrim: rgb(10 14 26 / 0.45);
+    --bb-scrim-primary: rgb(10 42 128 / 0.45);
+
+    /* ---- app layer: faceted gradient faces ---- */
+    --bb-facets: linear-gradient(118deg, rgb(255 255 255 / 0.16) 0 26%, transparent 26% 58%, rgb(255 255 255 / 0.07) 58% 74%, transparent 74%);
+    --bb-face-primary: var(--bb-facets), linear-gradient(180deg, #2a4be2, #1030c9);
+    --bb-face-gray: var(--bb-facets), linear-gradient(180deg, #6b6d87, #474960);
+    --bb-face-ink: var(--bb-facets), linear-gradient(180deg, #1b2030, #05070c);
+    --bb-face-light: linear-gradient(118deg, rgb(255 255 255 / 0.75) 0 30%, transparent 30%), linear-gradient(180deg, #fbfcff, #dfe2ec);
+    --bb-face-signal: linear-gradient(180deg, #ffe066, #ffc800);
+    --bb-face-accent: linear-gradient(135deg, #3d9bff, #0063f0);
+    --bb-face-band: linear-gradient(180deg, #0a5ce0, #1c45d8 60%, #0b3fcb); /* settings side band */
+    --bb-face-header: linear-gradient(90deg, #1e263d 0 45%, #4b5265 75%, #e0e1e3); /* dialog header */
+    --bb-gray: #575870; /* flat secondary button */
+    --bb-gray-shade: #4a4b62;
+    --bb-navy: #1e263d;
+    --bb-sys-panel: #f6f7fb; /* light dialog body */
+    --bb-sys-panel-2: #e9ebf3; /* its faint diagonal shapes */
+    --bb-sys-dark: rgb(16 20 28 / 0.84); /* dark settings panel */
+    --bb-sys-dark-edge: rgb(255 255 255 / 0.5);
+    --bb-sys-shadow: 0 3px 6px rgb(0 0 0 / 0.32);
+
+    /* ---- type ---- */
+    --bb-font-body: "Noto Sans TC Variable", "Microsoft JhengHei UI", "PingFang TC", system-ui, sans-serif;
+    --bb-font-display: "Anton", "Impact", var(--bb-font-body);
+    --bb-font-tech: "Saira Condensed", "Arial Narrow", var(--bb-font-body);
+    --bb-font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+    --bb-font-serif: "Noto Serif TC", "PMingLiU", serif; /* vertical display kanji */
+    --bb-font-script: "Pinyon Script", cursive; /* small handwritten accents */
+    --bb-tech-style: italic; /* panel titles */
+
+    /* ---- shape ---- */
+    --bb-radius: 2px;
+    --bb-skew: -12deg;
+    --bb-slant: 1; /* 1 = slanted tag edges and small skews, 0 = square */
+    --bb-hard: 1; /* 1 = hard offset shadows, 0 = none */
+    --bb-cut: 14px; /* corner cut on plates */
+    --bb-cut-lg: 16px; /* corner cut on panels */
+    --bb-stroke: 2px; /* outline width on ghost buttons, tabs, dialogs */
+    --bb-stroke-color: var(--bb-ink);
+    --bb-shadow: 6px 6px 0 var(--bb-ink);
+    --bb-glow: 0 0 0 0 transparent; /* soft glow added to raised elements */
+    --bb-plate-sheen: linear-gradient(transparent, transparent); /* overlay on solid plates and strips */
+    /* ChromeBackground metal: "none" keeps the shader's own black/silver; skins may set hex */
+    --bb-chrome-lo: none;
+    --bb-chrome-hi: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]),
+    :root:not([data-theme="light"]) :is([data-skin="bluebolt"], [data-skin="hud"], [data-skin="app"]) {
+      color-scheme: dark;
+      --bb-paper: #060b1a;
+      --bb-surface: #0d1530;
+      --bb-ink: #eef2fa;
+      --bb-ink-2: #b4bdcc;
+      --bb-ink-3: #8a94a7;
+      --bb-ink-4: #4c566a;
+      --bb-line: rgb(238 242 250 / 0.16);
+      --bb-line-2: rgb(238 242 250 / 0.3);
+      --bb-primary: #183dd6;
+      --bb-primary-2: #4d86ff;
+      --bb-primary-soft: #0a2466;
+      --bb-primary-deep: #a9c2ff;
+      --bb-primary-text: #4d86ff;
+      --bb-signal: #ffd84a;
+      --bb-signal-soft: #4a3d05;
+      --bb-signal-deep: #ffe58a;
+      --bb-panel-ink: #05070c;
+      --bb-shadow: 6px 6px 0 #000;
+      --bb-glass: rgb(13 21 48 / 0.6);
+      --bb-glass-strong: rgb(13 21 48 / 0.82);
+      --bb-glass-edge: rgb(120 160 255 / 0.35);
+      --bb-hud-line: rgb(238 242 250 / 0.22);
+      --bb-hud-dot: rgb(238 242 250 / 0.14);
+      --bb-grid: rgb(238 242 250 / 0.06);
+      --bb-strip: #000000;
+    }
+  }
+
+  :root[data-theme="dark"],
+  :root[data-theme="dark"] :is([data-skin="bluebolt"], [data-skin="hud"], [data-skin="app"]) {
+    color-scheme: dark;
+    --bb-paper: #060b1a;
+    --bb-surface: #0d1530;
+    --bb-ink: #eef2fa;
+    --bb-ink-2: #b4bdcc;
+    --bb-ink-3: #8a94a7;
+    --bb-ink-4: #4c566a;
+    --bb-line: rgb(238 242 250 / 0.16);
+    --bb-line-2: rgb(238 242 250 / 0.3);
+    --bb-primary: #183dd6;
+    --bb-primary-2: #4d86ff;
+    --bb-primary-soft: #0a2466;
+    --bb-primary-deep: #a9c2ff;
+    --bb-primary-text: #4d86ff;
+    --bb-signal: #ffd84a;
+    --bb-signal-soft: #4a3d05;
+    --bb-signal-deep: #ffe58a;
+    --bb-panel-ink: #05070c;
+    --bb-shadow: 6px 6px 0 #000;
+    --bb-glass: rgb(13 21 48 / 0.6);
+    --bb-glass-strong: rgb(13 21 48 / 0.82);
+    --bb-glass-edge: rgb(120 160 255 / 0.35);
+    --bb-hud-line: rgb(238 242 250 / 0.22);
+    --bb-hud-dot: rgb(238 242 250 / 0.14);
+    --bb-grid: rgb(238 242 250 / 0.06);
+    --bb-strip: #000000;
+  }
+}

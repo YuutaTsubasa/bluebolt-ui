@@ -54,11 +54,11 @@
   .tag {
     padding: 2px 12px 2px 8px;
     background: var(--bb-strip);
-    color: var(--bb-blue-2);
-    font: 700 italic 14px var(--bb-font-cond);
+    color: var(--bb-primary-2);
+    font: 700 italic 14px var(--bb-font-tech);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 8px * var(--bb-slant)) 100%, 0 100%);
   }
   .txt :global(.title) {
     margin: 0;

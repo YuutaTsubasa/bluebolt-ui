@@ -107,12 +107,12 @@
     overflow: visible;
   }
   .bb-dialog::backdrop {
-    background: rgb(10 42 128 / 0.45);
+    background: var(--bb-scrim-primary);
     backdrop-filter: blur(2px);
   }
   .card {
     background: var(--bb-surface);
-    border: 2px solid var(--bb-ink);
+    border: var(--bb-stroke) solid var(--bb-stroke-color);
     box-shadow: var(--bb-shadow);
     animation: bb-dlg-in var(--bb-t-enter) var(--bb-ease) both;
   }
@@ -132,12 +132,12 @@
     padding: var(--bb-space-5) var(--bb-space-6) var(--bb-space-5);
   }
   .en {
-    font-family: var(--bb-font-cond);
+    font-family: var(--bb-font-tech);
     font-weight: 700;
     font-size: var(--bb-text-xs);
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--bb-blue-text);
+    color: var(--bb-primary-text);
   }
   h2 {
     margin: 2px 0 var(--bb-space-3);
@@ -159,7 +159,7 @@
   .bar {
     flex: 1;
     height: 6px;
-    background: var(--bb-yellow);
+    background: var(--bb-signal);
     box-shadow: inset 0 -2px 0 var(--bb-panel-ink);
     transform-origin: left;
     transition: transform 100ms linear;
